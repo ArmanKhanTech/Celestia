@@ -1,113 +1,135 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export default function Landing() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <div class="overflow-x-hidden md:bg-[linear-gradient(90deg,_white_70%,_lightgray_70%)]">
+      <header class="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-blue-900 md:mx-auto md:flex-row md:items-center">
+        <Link
+          href="/"
+          class="flex cursor-pointer items-center whitespace-nowrap text-2xl"
+        >
+          <span class="mr-2 text-4xl text-blue-500">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src="/logo.png"
+              alt="Celestia"
+              width={64}
+              height={64} 
             />
-          </a>
+          </span>
+          Celestia
+        </Link>
+        <input type="checkbox" class="peer hidden" id="navbar-open" />
+        <label
+          class="absolute top-5 right-7 cursor-pointer md:hidden"
+          for="navbar-open"
+        >
+          <span class="sr-only">Toggle Navigation</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </label>
+        <nav
+          aria-label="Header Navigation"
+          class="flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all peer-checked:mt-8 peer-checked:max-h-56 md:ml-24 md:max-h-full md:flex-row md:items-start"
+        >
+          <ul class="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
+            <li class="md:mr-12">
+              <a href="#">Pricing</a>
+            </li>
+            <li class="md:mr-12">
+              <a href="#">Features</a>
+            </li>
+            <li class="md:mr-12">
+              <a href="#">Support</a>
+            </li>
+            <li class="md:mr-12">
+              <button class="rounded-full border-2 border-blue-900 px-6 py-1 text-blue-900 transition-colors hover:bg-blue-500 hover:text-white">
+                Login
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="relative mx-auto max-w-screen-xl px-4 py-12 sm:px-10 sm:py-16 lg:pt-20 xl:pb-0">
+        <div class="relative">
+          <div class="">
+            <h1 class="mt-5 text-3xl leading-snug text-gray-900 sm:text-5xl sm:leading-snug lg:text-6xl lg:leading-snug">
+              A platform for{" "}
+              <span class="font-bold whitespace-nowrapa text-blue-600">
+                aggregated sales
+              </span>
+            </h1>
+            <p class="mt-8 max-w-md text-base leading-7 text-gray-600">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+              deleniti perferendis magnam.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative mt-16 mb-16 flex w-fit flex-col items-center justify-center divide-y divide-gray-200 text-gray-500 md:mt-20 lg:flex-row">
+          <p class="left-0 top-0 mb-4 text-3xl font-medium text-gray-400 underline lg:absolute">
+            This is how it works
+          </p>
+          <div class="flex w-full items-center space-x-2 border bg-white py-4 px-4 shadow-lg lg:w-56">
+            <span class="text-5xl font-black text-blue-600">1</span>
+            <p>Improve Sales</p>
+          </div>
+          <div class="flex w-full items-center space-x-2 border bg-white py-4 px-4 shadow-lg lg:mb-16 lg:w-56">
+            <span class="text-5xl font-black text-blue-600">2</span>
+            <p>Increase Userbase</p>
+          </div>
+          <div class="flex w-full items-center space-x-2 border bg-white py-4 px-4 shadow-lg lg:mb-32 lg:w-56">
+            <span class="text-5xl font-black text-blue-600">3</span>
+            <p>Win Marketshare</p>
+          </div>
+          <div class="flex w-full items-center space-x-2 border bg-white py-4 px-4 shadow-lg lg:mb-56 lg:w-56">
+            <svg
+              class="w-24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
+            >
+              <path
+                stroke="rgb(37 99 235)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.2463 3.51912C13.2463 4.45527 12.9424 5.35308 12.4014 6.01504C11.9745 6.53735 11.4277 6.87906 10.8402 7L3.1533 6.99798C2.56945 6.87529 2.02629 6.53447 1.6018 6.01504C1.06083 5.35308 0.756917 4.45527 0.756917 3.51912L0.7569 2.02218C0.756897 1.83787 0.877987 1.67545 1.05463 1.62284C4.93503 0.467077 9.06813 0.46708 12.9485 1.62285C13.1252 1.67546 13.2463 1.83787 13.2463 2.02218V3.51912Z"
+              ></path>
+              <path
+                stroke="rgb(37 99 235)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.99622 10.2227V13.25"
+              ></path>
+              <path
+                stroke="rgb(37 99 235)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.59241 13.25H9.4001"
+              ></path>
+              <path
+                fill="#D7E0FF"
+                stroke="rgb(37 99 235)"
+                d="M3.52159 6.59555C3.58217 8.50666 5.08952 10.2151 7.0016 10.2151C8.94734 10.2151 10.4129 8.53676 10.4799 6.59217C10.4925 6.22608 10.4993 5.85621 10.4993 5.48257C10.4993 3.96735 10.3982 2.4241 10.2328 1.05536C9.19364 0.823367 8.12497 0.75 7.0016 0.75C5.87822 0.75 4.78799 0.814457 3.77037 1.05536C3.59603 2.41834 3.50391 3.96735 3.50391 5.48257C3.50391 5.85749 3.50995 6.22845 3.52159 6.59555Z"
+              ></path>
+            </svg>
+            <p>Be the last one standing</p>
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
