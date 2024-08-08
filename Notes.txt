@@ -1,0 +1,33 @@
+Login
+Signup
+Home
+Chat
+Settings
+About
+Loading
+
+Redis pub/sub for communication
+Web sockets for connection
+Postgres to store user data
+End-to-end encryption
+Firebase for blob storage
+
+Chat: Text, documents and media files
+
+One to one 
+groups
+
+Microservices:
+Chat 
+Auth
+Upload/download
+
+API gateway: ngnix
+GRPC for communication between chat and Upload/download
+
+Tables:
+User
+Conversation
+Messages
+Participants
+
