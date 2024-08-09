@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
-// fix this
-import { ThemeProvider } from "./context/ThemeProvider";
-import ContextWrapper from "./context/ContextWrapper";
+import { ThemeProvider } from "@/context/ThemeProvider";
+import ContextWrapper from "@/context/ContextWrapper";
 
 import "./globals.css";
 

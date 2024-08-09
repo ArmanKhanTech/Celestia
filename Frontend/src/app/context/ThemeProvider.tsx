@@ -26,6 +26,7 @@ export const ThemeProvider = ({ children }: any) => {
       setTheme((prev) => (prev === "light" ? "dark" : "light"));
     }
   };
+  
   return (
     <ThemeContext.Provider value={{ theme, changeTheme }}>
       {children}
