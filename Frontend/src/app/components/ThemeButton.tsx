@@ -1,15 +1,52 @@
-'use client';
+"use client";
 
 import { useContext, useState } from "react";
+import { IoCloseSharp } from "react-icons/io5";
+
 import { ThemeContext } from "@/context/ThemeProvider";
 
 export default function ThemeSwap() {
+  const themes = [
+    "light",
+    "dark",
+    "cupcake",
+    "bumblebee",
+    "emerald",
+    "corporate",
+    "synthwave",
+    "retro",
+    "cyberpunk",
+    "valentine",
+    "halloween",
+    "garden",
+    "forest",
+    "aqua",
+    "lofi",
+    "pastel",
+    "fantasy",
+    "wireframe",
+    "black",
+    "luxury",
+    "dracula",
+    "cmyk",
+    "autumn",
+    "business",
+    "acid",
+    "lemonade",
+    "night",
+    "coffee",
+    "winter",
+    "dim",
+    "nord",
+    "sunset",
+  ];
+
   const { changeTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOnClick = (event: React.MouseEvent<HTMLLIElement>) => {
+  const handleOnClick = (theme: string) => {
     if (changeTheme) {
-      changeTheme(event);
+      changeTheme(theme);
     }
   };
 
@@ -18,84 +55,38 @@ export default function ThemeSwap() {
   };
 
   return (
-    <div className="relative">
+    <>
       <button
-        id="dropdownDefaultButton"
+        className="rounded-full border-2 px-6 py-1"
         onClick={toggleDropdown}
-        className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-        type="button"
       >
-        Dropdown button
-        <svg
-          className="w-2.5 h-2.5 ms-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="m1 1 4 4 4-4"
-          />
-        </svg>
+        Theme
       </button>
-
       <div
-        id="dropdown"
-        className={`absolute z-44 ${isOpen ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
-        style={{ top: '100%', left: 0 }}
+        className={`fixed inset-0 z-50 px-5 grid h-screen w-screen place-items-center bg-black bg-opacity-50 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
-        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-          <li onClick={handleOnClick}>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Dark"
-              value="dark"
-            />
-          </li>
-          <li onClick={handleOnClick}>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Light"
-              value="light"
-            />
-          </li>
-          <li onClick={handleOnClick}>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Retro"
-              value="retro"
-            />
-          </li>
-          <li onClick={handleOnClick}>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Cyberpunk"
-              value="cyberpunk"
-            />
-          </li>
-          <li onClick={handleOnClick}>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label="Aqua"
-              value="aqua"
-            />
-          </li>
-        </ul>
+        <div
+          className="relative w-full max-w-96 max-h-96 rounded-lg text-lg leading-relaxed backdrop-blur-lg shadow-2xl"
+        >
+          <div className="flex items-center p-4 text-2xl antialiased font-semibold leading-snug shrink-0">
+            <span>Choose a theme</span>
+            <button className="ml-auto" onClick={toggleDropdown}>
+              <IoCloseSharp />
+            </button>
+          </div>
+          <ul className="flex flex-col px-4 space-y-2 overflow-y-auto max-h-72">
+            {themes.map((theme) => (
+              <li
+                key={theme}
+                className="flex items-center justify-between py-4 font-semibold cursor-pointer transition-colors border-b"
+                onClick={() => handleOnClick(theme)}
+              >
+                <span>{theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
