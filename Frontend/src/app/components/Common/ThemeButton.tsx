@@ -4,43 +4,9 @@ import { useContext, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 import { ThemeContext } from "@/context/ThemeProvider";
+import { themes } from "@/lib/constants";
 
-export default function ThemeSwap() {
-  const themes = [
-    "light",
-    "dark",
-    "cupcake",
-    "bumblebee",
-    "emerald",
-    "corporate",
-    "synthwave",
-    "retro",
-    "cyberpunk",
-    "valentine",
-    "halloween",
-    "garden",
-    "forest",
-    "aqua",
-    "lofi",
-    "pastel",
-    "fantasy",
-    "wireframe",
-    "black",
-    "luxury",
-    "dracula",
-    "cmyk",
-    "autumn",
-    "business",
-    "acid",
-    "lemonade",
-    "night",
-    "coffee",
-    "winter",
-    "dim",
-    "nord",
-    "sunset",
-  ];
-
+const ThemeButton = () => {
   const { changeTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -57,17 +23,15 @@ export default function ThemeSwap() {
   return (
     <>
       <button
-        className="rounded-full border-2 px-6 py-1"
+        className="rounded-full w-full lg:w-28 bg-base-100 border-2 px-6 py-1"
         onClick={toggleDropdown}
       >
         Theme
       </button>
       <div
-        className={`fixed inset-0 z-50 px-5 grid h-screen w-screen place-items-center bg-black bg-opacity-50 transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 z-50 px-5 grid h-screen w-screen place-items-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
-        <div
-          className="relative w-full max-w-96 max-h-96 rounded-lg text-lg leading-relaxed backdrop-blur-lg shadow-2xl"
-        >
+        <div className="relative w-full max-w-96 max-h-96 rounded-lg text-lg leading-relaxed bg-base-200">
           <div className="flex items-center p-4 text-2xl antialiased font-semibold leading-snug shrink-0">
             <span>Choose a theme</span>
             <button className="ml-auto" onClick={toggleDropdown}>
@@ -78,7 +42,7 @@ export default function ThemeSwap() {
             {themes.map((theme) => (
               <li
                 key={theme}
-                className="flex items-center justify-between py-4 font-semibold cursor-pointer transition-colors border-b"
+                className="flex items-center justify-between pt-4 pb-3 font-semibold cursor-pointer transition-colors border-t"
                 onClick={() => handleOnClick(theme)}
               >
                 <span>{theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
@@ -89,4 +53,6 @@ export default function ThemeSwap() {
       </div>
     </>
   );
-}
+};
+
+export default ThemeButton;

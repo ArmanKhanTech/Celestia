@@ -1,27 +1,38 @@
 import type { Metadata } from "next";
 
 import { ThemeProvider } from "@/context/ThemeProvider";
-import ContextWrapper from "@/context/ContextWrapper";
+import { ToastProvider } from "@/context/ToastProvider";
 
+import RootWrapper from "./wrapper";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Celestia",
-  description: "A next generation chatting platform.",
+  description: "A next generation messaging platform.",
 };
 
-export default function RootLayout({
+const ContextWrapper = ({ children }: any) => {
+  return (
+    <ThemeProvider>
+      <ToastProvider>{children}</ToastProvider>
+    </ThemeProvider>
+  );
+};
+
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
-          <ContextWrapper>{children}</ContextWrapper>
-        </ThemeProvider>
+        <ContextWrapper>
+          <RootWrapper>{children}</RootWrapper>
+        </ContextWrapper>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

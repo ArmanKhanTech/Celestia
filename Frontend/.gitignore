@@ -38,3 +38,5 @@ next-env.d.ts
 # ignore all node_modules
 **node_modules
 
+
+.vercel
