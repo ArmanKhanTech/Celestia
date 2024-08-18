@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const ProfilePage = () => {
   return (
-    <section className="flex-grow flex flex-col items-center lg:items-start justify-start overflow-auto p-3 lg:p-6 gap-2 w-full h-full">
+    <section className="flex flex-col items-start justify-start w-full h-full p-3 lg:p-6">
       {/* TODO: Add edit if current user is the owner. */}
       <p className="text-3xl font-semibold">Profile</p>
       {/* TODO: Add placeholder. */}

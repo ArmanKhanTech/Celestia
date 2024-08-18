@@ -20,7 +20,7 @@ const LandingPage = () => {
   };
 
   return (
-    <section className="p-5 w-full h-full flex-grow overflow-auto">
+    <section className="p-5 w-full h-full scrollable">
       <div className="max-w-6xl mx-auto">
         <Hero />
         <div className="flex flex-col gap-4 items-center justify-center">

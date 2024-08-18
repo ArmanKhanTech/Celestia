@@ -21,7 +21,7 @@ const ThemeButton = () => {
   };
 
   return (
-    <>
+    <div className="m-0 w-full">
       <button
         className="rounded-full w-full lg:w-28 bg-base-100 border-2 px-6 py-1"
         onClick={toggleDropdown}
@@ -38,7 +38,7 @@ const ThemeButton = () => {
               <IoCloseSharp />
             </button>
           </div>
-          <ul className="flex flex-col px-4 space-y-2 overflow-y-auto max-h-72">
+          <ul className="flex flex-col px-4 space-y-2 scrollable max-h-72">
             {themes.map((theme) => (
               <li
                 key={theme}
@@ -51,7 +51,7 @@ const ThemeButton = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

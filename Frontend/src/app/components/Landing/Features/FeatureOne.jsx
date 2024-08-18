@@ -9,9 +9,9 @@ const FeatureOne = () => {
         </h2>
         <p className="mb-4 text-xl">
           State-of-the-art end-to-end encryption keeps your conversations
-          secure. We can&apos;t read your messages or your media, and no one
-          else can either. Privacy isn&apos;t an optional mode — it&apos;s just
-          the way that Celestia works. Every message, every time.
+          secure. We can&apos;t read your messages, and no one else can either.
+          Privacy isn&apos;t an optional mode — it&apos;s just the way that
+          Celestia works. Every message, every time.
         </p>
       </div>
       <div className="h-full w-full lg:w-1/2 shadow-lg">

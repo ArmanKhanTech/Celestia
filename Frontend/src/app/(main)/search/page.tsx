@@ -5,17 +5,17 @@ import { IoIosSend } from "react-icons/io";
 
 const SearchPage = () => {
   return (
-    <section className="flex-grow flex flex-col text-start items-start justify-start overflow-auto p-3 lg:p-6 gap-2 w-full h-full">
+    <section className="flex flex-col items-start justify-start w-full h-full p-3 lg:p-6">
       <p className="text-3xl font-semibold text-start">Search</p>
       <input
         type="text"
-        className="w-full border p-3 rounded-md h-12 bg-base-200 mt-4"
+        className="w-full border p-3 rounded-md h-10 bg-base-200 mt-4"
         placeholder="Search a username"
       />
       {[1, 2, 3, 4].map((item) => (
         <div
           key={item}
-          className="flex items-center justify-between w-full py-2 border-b"
+          className="flex items-center justify-between w-full py-2 border-b mt-4"
         >
           <div className="flex items-center gap-2">
             <Image

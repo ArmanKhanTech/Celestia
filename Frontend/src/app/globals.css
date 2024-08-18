@@ -4,6 +4,14 @@
 @tailwind utilities;
 
 * {
-  scrollbar-width: none;
   font-family: "Montserrat", sans-serif;
+  scrollbar-width: none;
+}
+
+.not-scrollable {
+  overflow: hidden !important;
+}
+
+.scrollable {
+  overflow-y: scroll !important;
 }

@@ -39,7 +39,7 @@ const featureTwo = [
     title: "Say Anything",
     img: "/images/features/feature-two-1.png",
     description:
-      "Share text, audio, photos, GIFs and files for free. Celestia uses your phone's data connection so you can avoid SMS and MMS fees.",
+      "Chat for free. Celestia uses your devices's data connection so you can avoid SMS and MMS fees.",
   },
   {
     id: 2,

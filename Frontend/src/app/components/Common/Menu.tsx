@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FaHome, FaUser, FaCog, FaInfoCircle, FaSearch } from "react-icons/fa";
-import { link } from "fs";
 
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Home");
@@ -16,7 +15,7 @@ const Menu = () => {
   ];
 
   return (
-    <section className="flex-1 h-full p-2 lg:p-4 border-r max-w-14 lg:max-w-40">
+    <section className="p-2 lg:p-4">
       <div className="lg:hidden w-full flex flex-col gap-4">
         {menuItems.map((item, index) => (
           <Link
@@ -29,7 +28,7 @@ const Menu = () => {
           </Link>
         ))}
       </div>
-      <div className="hidden lg:grid lg:w-full lg:grid-cols-1 lg:gap-4">
+      <div className="hidden lg:grid lg:w-full lg:grid-cols-1 lg:gap-4 text-lg">
         {menuItems.map((item, index) => (
           <Link
             key={index}

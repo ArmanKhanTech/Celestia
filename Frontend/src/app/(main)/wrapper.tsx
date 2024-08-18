@@ -4,9 +4,11 @@ import Menu from "@/components/Common/Menu";
 
 const MainWrapper = ({ children }: any) => {
   return (
-    <section className="flex flex-row h-full w-full flex-grow overflow-auto">
-      <Menu />
-      <div className="flex-1">{children}</div>
+    <section className="flex-1 flex h-full w-full flex-row overflow-hidden">
+      <div className="fixed h-full bg-base-100 w-14 lg:w-40 border-r">
+        <Menu />
+      </div>
+      <div className="flex-grow ml-14 lg:ml-40">{children}</div>
     </section>
   );
 };

@@ -6,16 +6,14 @@ import { AiOutlineWechat } from "react-icons/ai";
 
 const LoginPage = () => {
   return (
-    <section className="flex h-full w-full flex-col justify-center p-5">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-5 text-center text-2xl font-semibold leading-9 tracking-tight">
-          Sign in to your account
-        </h2>
-      </div>
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <section className="flex flex-col h-full w-full m-auto items-center justify-center p-5">
+      <h2 className="mt-5 text-center text-2xl font-semibold">
+        Sign in to your account
+      </h2>
+      <div className="mt-10 w-full lg:max-w-sm">
         <form className="space-y-6" action="#" method="POST">
           <div>
-            <label htmlFor="email" className="block text-lg font-medium leading-6">
+            <label htmlFor="email" className="block text-lg font-medium">
               Email address
             </label>
             <div className="mt-2">
@@ -30,7 +28,7 @@ const LoginPage = () => {
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-lg font-medium leading-6">
+              <label htmlFor="password" className="block text-lg font-medium">
                 Password
               </label>
               <button className="text-base">Forgot password?</button>

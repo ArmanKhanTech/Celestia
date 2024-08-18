@@ -1,6 +1,6 @@
 const AboutPage = () => {
   return (
-    <section className="flex-grow flex flex-col text-start items-start justify-start overflow-auto p-3 lg:p-6 gap-2 w-full h-full">
+    <section className="flex flex-col items-start justify-start p-3 lg:p-6 gap-2 w-full h-full">
       <p className="text-3xl font-semibold text-start">About Us</p>
       <p className="text-xl mt-4">
         Celestia is a simple, powerful, and secure messenger that allows you to

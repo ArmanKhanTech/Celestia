@@ -10,9 +10,14 @@ const MainWrapper = ({ children }: any) => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <section className="flex flex-col h-screen w-screen" data-theme={theme}>
+    <section
+      className="flex flex-col min-h-screen min-w-screen not-scrollable"
+      data-theme={theme}
+    >
       <Header />
-      {children}
+      <div className="mt-[4.75rem] flex flex-col flex-1 scrollable">
+        {children}
+      </div>
       <Toast />
     </section>
   );

@@ -6,16 +6,14 @@ import Link from "next/link";
 
 const SignupPage = () => {
   return (
-    <section className="flex h-full w-full flex-col justify-center p-5">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-5 text-center text-2xl font-semibold leading-9 tracking-tight">
-          Create a new account
-        </h2>
-      </div>
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <section className="flex h-full w-full flex-col justify-center items-center p-5">
+      <h2 className="mt-5 text-center text-2xl font-semibold">
+        Create a new account
+      </h2>
+      <div className="mt-10 w-full lg:max-w-sm">
         <form className="space-y-6" action="#" method="POST">
           <div>
-            <label htmlFor="username" className="block text-lg font-medium leading-6">
+            <label htmlFor="username" className="block text-lg font-medium">
               Username
             </label>
             <div className="mt-2">
@@ -29,7 +27,21 @@ const SignupPage = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="email" className="block text-lg font-medium leading-6">
+            <label htmlFor="name" className="block text-lg font-medium">
+              Name
+            </label>
+            <div className="mt-2">
+              <input
+                id="name"
+                name="name"
+                type="name"
+                required
+                className="block w-full rounded-md text-lg border px-4 py-2 shadow-sm"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-lg font-medium">
               Email address
             </label>
             <div className="mt-2">
@@ -44,7 +56,7 @@ const SignupPage = () => {
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-lg font-medium leading-6">
+              <label htmlFor="password" className="block text-lg font-medium">
                 Password
               </label>
             </div>

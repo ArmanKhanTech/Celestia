@@ -1,11 +1,20 @@
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 
-const ChatListTile = ({ chat }) => {
+type ChatListTileProps = {
+  chat: {
+    id: number;
+    avatar: string;
+    name: string;
+    message: string;
+  };
+};
+
+const ChatListTile = ({ chat }: ChatListTileProps) => {
   return (
     <div
       key={chat.id}
-      className="flex items-center cursor-pointer w-full p-3 border-b"
+      className="flex items-center cursor-pointer w-full py-3 border-b"
     >
       {chat.avatar ? (
         <Image
