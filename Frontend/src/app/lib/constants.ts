@@ -53,14 +53,14 @@ const featureTwo = [
     title: "Make Privacy Stick",
     img: "/images/features/feature-two-3.png",
     description:
-      "Add a new layer of expression to your conversations with encrypted stickers. You can also create and share your own sticker packs.",
+      "Add a new layer of privacy to your conversations with Celestia's end-to-end encryption.",
   },
   {
     id: 4,
     title: "Make Privacy Stick",
     img: "/images/features/feature-two-4.png",
     description:
-      "Group chats make it easy to stay connected to your family, friends, and coworkers.",
+      "Group chats make it easy to stay connected to your family, friends, and co-workers no matter where they are.",
   },
 ];
 

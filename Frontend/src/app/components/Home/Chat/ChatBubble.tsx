@@ -1,3 +1,5 @@
+"use client";
+
 type ChatBubbleProps = {
   message: {
     sender: string;

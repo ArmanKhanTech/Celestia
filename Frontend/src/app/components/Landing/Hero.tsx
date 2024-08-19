@@ -3,18 +3,20 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <div
-      className="flex flex-col gap-8 lg:flex-row bg-contain h-[80vh] rounded-xl mt-3 mb-32 bg-center"
+      className="flex flex-col lg:flex-row bg-contain h-[80vh] rounded-xl mt-3 mb-32 bg-center"
       style={{ backgroundImage: "url('/images/hero/hero-bg.jpg')" }}
     >
-      <div className="w-full h-1/2 p-5 lg:w-1/2 self-center rounded-lg">
-        <h1 className="text-3xl font-semibold lg:text-6xl text-white">
-          Speak Freely
-        </h1>
-        <p className="mt-8 max-w-md text-xl text-white">
-          Say &apos;hello&apos; to a different messaging experience. An
-          unexpected focus on privacy, combined with all of the features you
-          expect.
-        </p>
+      <div className="w-full h-full p-5 lg:w-1/2 rounded-lg bg-black bg-opacity-40">
+        <div className="flex items-start justify-center flex-col w-full h-full">
+          <h1 className="text-3xl font-semibold lg:text-6xl text-white">
+            Speak Freely
+          </h1>
+          <p className="mt-8 max-w-md text-xl text-white">
+            Say &apos;hello&apos; to a different messaging experience. An
+            unexpected focus on privacy, combined with all of the features you
+            expect.
+          </p>
+        </div>
       </div>
       <div className="w-full h-1/2 lg:h-full lg:w-1/2">
         <div className="w-full h-full">

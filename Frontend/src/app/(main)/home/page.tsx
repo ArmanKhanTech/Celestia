@@ -12,7 +12,7 @@ type Chat = {
   message: string;
 };
 
-const ChatList = () => {
+const HomePage = () => {
   const pathname = usePathname();
   const isChatPage = pathname.includes("/chat/");
 
@@ -48,4 +48,4 @@ const ChatList = () => {
   );
 };
 
-export default ChatList;
+export default HomePage;
