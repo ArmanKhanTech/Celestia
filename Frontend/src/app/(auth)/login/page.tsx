@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineWechat } from "react-icons/ai";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<number>("");
+
   return (
     <section className="flex flex-col h-full w-full m-auto items-center justify-center p-5">
       <h2 className="mt-5 text-center text-2xl font-semibold">
@@ -17,6 +21,8 @@ const LoginPage = () => {
           </label>
           <div className="mt-2">
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               name="email"
               type="email"
@@ -34,6 +40,8 @@ const LoginPage = () => {
           </div>
           <div className="mt-2">
             <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="password"
               name="password"
               type="password"

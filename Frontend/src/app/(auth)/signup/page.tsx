@@ -1,10 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { AiOutlineWechat } from "react-icons/ai";
 import Link from "next/link";
 
+import useAuth from "@/hooks/useAuth";
+
 const SignupPage = () => {
+  const [username, setUsername] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<number>("");
+
+  const { signup } = useAuth();
+
   return (
     <section className="flex flex-col h-full w-full m-auto items-center justify-center p-5">
       <h2 className="mt-5 text-center text-2xl font-semibold">
@@ -17,6 +27,8 @@ const SignupPage = () => {
           </label>
           <div className="mt-2">
             <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               id="username"
               name="username"
               type="username"
@@ -31,6 +43,8 @@ const SignupPage = () => {
           </label>
           <div className="mt-2">
             <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               id="name"
               name="name"
               type="name"
@@ -45,6 +59,8 @@ const SignupPage = () => {
           </label>
           <div className="mt-2">
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               id="email"
               name="email"
               type="email"
@@ -61,6 +77,8 @@ const SignupPage = () => {
           </div>
           <div className="mt-2">
             <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="password"
               name="password"
               type="password"
@@ -71,7 +89,7 @@ const SignupPage = () => {
         </div>
         <div className="flex flex-col w-full lg:col-span-2 items-center justify-between mt-3 gap-5">
           <button
-            type="submit"
+            onClick={() => signup(email, password, name, username)}
             className="flex w-full justify-center rounded-md bg-base-content text-base-100 p-2 text-lg font-semibold leading-6 shadow-sm"
           >
             Sign Up
