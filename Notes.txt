@@ -12,7 +12,7 @@ Postgres to store user data
 End-to-end encryption
 Firebase for blob storage
 
-Chat: Text, documents and media files
+Chat: Text
 
 One to one 
 groups
@@ -20,14 +20,14 @@ groups
 Microservices:
 Chat 
 Auth
-Upload/download
+User
+Group
 
 API gateway: ngnix
-GRPC for communication between chat and Upload/download
 
 Tables:
-User
-Conversation
-Messages
-Participants
+Users: uid, uname, name, email, password, date_join, is_active, last_seen, profile_pic_url, status
+Conversations: cid, participants
+Messages: mid, cid, message, sender, sent_at, receiver, received_at, status
+Groups: gid, gname, participants, count, desc, admins, created_at
 
