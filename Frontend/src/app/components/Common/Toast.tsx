@@ -15,13 +15,13 @@ const Toast = () => {
   return (
     <div
       id="toast-default"
-      className="fixed bottom-4 right-4 flex items-center w-full max-w-xl p-4 bg-base-200 rounded-lg shadow-lg z-50"
+      className="fixed bottom-4 m-auto right-0 left-0 flex items-center w-[75%] lg:max-w-lg p-4 bg-base-200 rounded-lg shadow-lg z-50"
       role="alert"
     >
       {type === "success" ? (
-        <FaCircleCheck className="w-6 h-6" />
+        <FaCircleCheck className="w-6 h-6 flex-shrink-0" />
       ) : (
-        <MdError className="w-6 h-6" />
+        <MdError className="w-6 h-6 flex-shrink-0" />
       )}
       <div className="ms-3 text-lg font-normal">{message}</div>
       <button
@@ -30,7 +30,7 @@ const Toast = () => {
         onClick={hideToast}
         aria-label="Close"
       >
-        <IoCloseOutline className="w-6 h-6" />
+        <IoCloseOutline className="w-6 h-6 flex-shrink-0" />
       </button>
     </div>
   );

@@ -26,7 +26,7 @@ Group
 API gateway: ngnix
 
 Tables:
-Users: uid, uname, name, email, password, date_join, is_active, last_seen, profile_pic_url, status
+Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status
 Conversations: cid, participants
 Messages: mid, cid, message, sender, sent_at, receiver, received_at, status
 Groups: gid, gname, participants, count, desc, admins, created_at
