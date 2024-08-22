@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const NotFoundPage = () => {
   return (
     <main class="grid min-h-full place-items-center p-10 m-auto">
@@ -10,12 +12,12 @@ const NotFoundPage = () => {
           Sorry, we couldn’t find the page you’re looking for.
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="#"
+          <Link
+            href="/"
             class="rounded-md bg-base-content text-base-100 px-3.5 py-2.5 text-sm font-semibold"
           >
             Go back home
-          </a>
+          </Link>
         </div>
       </div>
     </main>

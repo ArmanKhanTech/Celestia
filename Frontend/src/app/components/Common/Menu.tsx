@@ -1,16 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { FaHome, FaUser, FaCog, FaInfoCircle, FaSearch } from "react-icons/fa";
 
+import { auth } from "@/lib/firebase";
+
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Home");
+  const [uid, setUid] = useState<string>("");
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+      }
+    });
+  }, []);
+  
+  useEffect(() => {
+    const path = window.location.pathname.split("/")[1];
+    setSelectedItem(path.charAt(0).toUpperCase() + path.slice(1));
+  }, []);
 
   const menuItems = [
     { icon: <FaHome />, name: "Home", link: "/home" },
     { icon: <FaSearch />, name: "Search", link: "/search" },
-    { icon: <FaUser />, name: "Profile", link: "/profile/123" },
+    { icon: <FaUser />, name: "Profile", link: `/profile/${uid}` },
     { icon: <FaCog />, name: "Settings", link: "/settings" },
     { icon: <FaInfoCircle />, name: "About", link: "/about" },
   ];

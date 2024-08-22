@@ -1,8 +1,28 @@
 "use client";
 
 import Image from "next/image";
+import { useParams } from 'next/navigation'
+import { useState, useEffect } from "react";
+
+import useAccount from "@/hooks/useAccount";
 
 const ProfilePage = () => {
+  const { id } = useParams();
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { getDetails } = useAccount();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await getDetails(id);
+      console.log(data);
+      setUser(data);
+      setLoading(false);
+    };
+
+    fetchUser();
+  }, [id]);
+
   return (
     <section className="flex flex-col items-start justify-start w-full h-full p-3 lg:p-6">
       {/* TODO: Add edit if current user is the owner. */}

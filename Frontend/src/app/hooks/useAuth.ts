@@ -32,10 +32,8 @@ const useAuth = () => {
     }
 
     try {
-      await Promise.all([
-        signInWithEmailAndPassword(auth, email, password),
-        signInUser(),
-      ]);
+      await signInWithEmailAndPassword(auth, email, password),
+      await signInUser(),
       showToast("Signed in successfully.", "success");
       window.location.replace("/home");
     } catch (error) {
