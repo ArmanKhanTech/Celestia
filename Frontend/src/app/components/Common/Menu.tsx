@@ -11,6 +11,7 @@ const Menu = () => {
     { icon: <FaHome />, name: "Home", link: "/home" },
     { icon: <FaSearch />, name: "Search", link: "/search" },
     { icon: <FaUser />, name: "Profile", link: "/profile/123" },
+    { icon: <FaCog />, name: "Settings", link: "/settings" },
     { icon: <FaInfoCircle />, name: "About", link: "/about" },
   ];
 

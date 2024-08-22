@@ -9,6 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.listen(3001, () => {
-    console.log('Auth micro-service is running on port 3001');
+app.listen(3002, () => {
+    console.log('User micro-service is running on port 3002');
 });

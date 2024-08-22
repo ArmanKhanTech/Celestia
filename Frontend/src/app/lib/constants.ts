@@ -33,6 +33,41 @@ const themes = [
   "sunset",
 ];
 
+const themeColor = {
+  light: "#ffffff",
+  dark: "#3b424e",
+  cupcake: "#faf7f5",
+  bumblebee: "#ffffff",
+  emerald: "#ffffff",
+  corporate: "#ffffff",
+  synthwave: "#2c1a65",
+  retro: "#e4d8b4",
+  cyberpunk: "#ffee00",
+  valentine: "#f0d6e8",
+  halloween: "#1f1f1f",
+  garden: "#e9e7e7",
+  forest: "#171212",
+  aqua: "#0c25b6",
+  lofi: "#ffffff",
+  pastel: "#ffffff",
+  fantasy: "#ffffff",
+  wireframe: "#ffffff",
+  black: "#000000",
+  luxury: "#ffffff",
+  dracula: "#302f3d",
+  cmyk: "#ffffff",
+  autumn: "#f6ad55",
+  business: "#f6ad55",
+  acid: "#f6ad55",
+  lemonade: "#f6ad55",
+  night: "#f6ad55",
+  coffee: "#f6ad55",
+  winter: "#f6ad55",
+  dim: "#f6ad55",
+  nord: "#f6ad55",
+  sunset: "#f6ad55",
+};
+
 const featureTwo = [
   {
     id: 1,
@@ -64,4 +99,4 @@ const featureTwo = [
   },
 ];
 
-export { themes, featureTwo };
+export { themes, themeColor, featureTwo };

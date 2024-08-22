@@ -14,7 +14,7 @@ const SignupPage = () => {
   const [password, setPassword] = useState<number>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { signup } = useAuth();
+  const { signUp } = useAuth();
 
   return (
     <section className="flex flex-col h-full w-full m-auto items-center justify-center p-5">
@@ -92,7 +92,7 @@ const SignupPage = () => {
           <button
             onClick={async () => {
               setLoading(true);
-              await signup(email, password, name, username);
+              await signUp(email, password, name, username);
               setLoading(false);
             }}
             className="flex w-full justify-center h-10 rounded-md bg-base-content text-base-100 p-2 text-lg font-semibold leading-6 shadow-sm"

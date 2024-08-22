@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
+import { themeColor } from "@/lib/constants";
 
 interface ThemeContextType {
   theme?: string;
@@ -20,6 +21,12 @@ export const ThemeProvider = ({ children }: any) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("theme", theme);
+      const metaThemeColor = document.querySelector("meta[name='theme-color']");
+      if (metaThemeColor) {
+        metaThemeColor.content = themeColor[theme];
+      } else {
+        console.error("Meta tag with name 'theme-color' not found");
+      }
     }
   }, [theme]);
 

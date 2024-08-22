@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const signin = require('../controllers/signin');
-const signup = require('../controllers/signup');
-// const signout = require('../controllers/signout');
+const signIn = require('../controllers/signIn');
+const signUp = require('../controllers/signUp');
+const signOut = require('../controllers/signOut');
 const verify = require('../controllers/verify');
 // const remove = require('../controllers/remove');
 
-router.post('/signin', signin);
-router.post('/signup', signup);
-// router.post('/signout', signout);
+router.post('/signin', signIn);
+router.post('/signup', signUp);
+router.post('/signout', signOut);
 router.post('/verify', verify);
 // router.post('/remove', remove);
 

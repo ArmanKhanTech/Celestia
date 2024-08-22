@@ -15,7 +15,7 @@ const useAuth = () => {
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-  const signin = async (email, password) => {
+  const signIn = async (email, password) => {
     if (!email || !password) {
       showToast("Please fill in all fields.", "error");
       return;
@@ -34,18 +34,18 @@ const useAuth = () => {
     try {
       await Promise.all([
         signInWithEmailAndPassword(auth, email, password),
-        signInUser()
+        signInUser(),
       ]);
       showToast("Signed in successfully.", "success");
-      // TODO: Redirect
+      window.location.replace("/home");
     } catch (error) {
+      console.log(error);
       showToast(error.message, "error");
-    } finally {
-      return;
     }
+    return;
   };
 
-  const signup = async (email, password, name, username) => {
+  const signUp = async (email, password, name, username) => {
     if (!email || !password || !name || !username) {
       showToast("Please fill in all fields.", "error");
       return;
@@ -74,15 +74,19 @@ const useAuth = () => {
     const usernameExists = await checkIfUsernameExists(username);
     if (!usernameExists) {
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password,
+        );
         await saveUser({ uid: userCredential.user.uid, username, name, email });
         showToast("Signed up successfully.", "success");
-        // TODO: Redirect
+        window.location.replace("/login");
       } catch (error) {
+        console.log(error);
         showToast(error.message, "error");
-      } finally {
-        return;
       }
+      return;
     } else {
       showToast("Username already exists.", "error");
       return;
@@ -98,8 +102,10 @@ const useAuth = () => {
       );
     } catch (error) {
       showToast(error.message, "error");
+    } finally {
+      return;
     }
-  }
+  };
 
   const saveUser = async (user) => {
     try {
@@ -115,17 +121,34 @@ const useAuth = () => {
       );
     } catch (error) {
       showToast(error.message, "error");
+    } finally {
+      return;
     }
   };
 
-  const logout = async () => {
-    setLoading(true);
-
+  const signOutUser = async () => {
     try {
-      // await signOutUser();
-      await auth.signOut();
+      await axios.post(
+        "http://localhost/auth/signout",
+        { uid: auth.currentUser.uid },
+        { headers: { "Content-Type": "application/json" } },
+      );
     } catch (error) {
       showToast(error.message, "error");
+    } finally {
+      return;
+    }
+  };
+
+  const logOut = async () => {
+    try {
+      await Promise.all([signOutUser(), auth.signOut()]);
+      showToast("Signed out successfully.", "success");
+      window.location.replace("/login");
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      return;
     }
   };
 
@@ -164,7 +187,12 @@ const useAuth = () => {
     return false;
   };
 
-  return { signin, signup, logout, forgotPassword };
+  return { 
+    signIn, 
+    signUp, 
+    logOut, 
+    forgotPassword
+   };
 };
 
 export default useAuth;

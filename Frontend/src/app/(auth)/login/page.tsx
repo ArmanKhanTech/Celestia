@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { signin, forgotPassword } = useAuth();
+  const { signIn, forgotPassword } = useAuth();
 
   return (
     <section className="flex flex-col h-full w-full m-auto items-center justify-center p-5">
@@ -68,7 +68,7 @@ const LoginPage = () => {
           <button
             onClick={async () => {
               setLoading(true);
-              await signin(email, password);
+              await signIn(email, password);
               console.log("Sign in");
               setLoading(false);
             }}

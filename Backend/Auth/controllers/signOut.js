@@ -1,6 +1,6 @@
 const db = require('../config/database');
 
-const signin = async (req, res) => {
+const signout = async (req, res) => {   
     const { uid } = req.body;
     const timestamp = new Date();
     
@@ -10,10 +10,10 @@ const signin = async (req, res) => {
 
     try {
         await db.query(query, [timestamp, uid]);
-        return res.status(200).json({ message: 'User signed in successfully' });
+        return res.status(200).json({ message: 'User signed out successfully' });
     } catch (err) {
         return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
-module.exports = signin;
+module.exports = signout;
