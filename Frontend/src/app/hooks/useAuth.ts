@@ -33,8 +33,8 @@ const useAuth = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password),
-      await signInUser(),
-      showToast("Signed in successfully.", "success");
+        await signInUser(),
+        showToast("Signed in successfully.", "success");
       window.location.replace("/home");
     } catch (error) {
       console.log(error);
@@ -185,12 +185,12 @@ const useAuth = () => {
     return false;
   };
 
-  return { 
-    signIn, 
-    signUp, 
-    logOut, 
-    forgotPassword
-   };
+  return {
+    signIn,
+    signUp,
+    logOut,
+    forgotPassword,
+  };
 };
 
 export default useAuth;

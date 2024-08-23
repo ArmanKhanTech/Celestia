@@ -4,7 +4,7 @@ const getDetails = async (req, res) => {
     const { uid } = req.query;
 
     const query = `
-        SELECT uname, email, pfp_url, status, last_seen, is_active FROM users WHERE uid = $1
+        SELECT uname, name, pfp_url, status, date_join FROM users WHERE uid = $1
     `;
 
     try {

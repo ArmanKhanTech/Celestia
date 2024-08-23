@@ -7,22 +7,19 @@ const useAccount = () => {
   const { showToast } = useContext(ToastContext);
 
   const getDetails = async (uid) => {
-      try {
-          const res = await axios.get(
-            `http://localhost/user/getdetails?uid=${uid}`,
-            { headers: { "Content-Type": "application/json" } },
-          );
-          return res.data;
-        } catch (error) {
-          console.error(error);
-          showToast(error.message, "error");
-        } finally {
-          return;
-        }
+    try {
+      const res = await axios.get(
+        `http://localhost/user/getdetails?uid=${uid}`,
+        { headers: { "Content-Type": "application/json" } },
+      );
+      return res.data;
+    } catch (error) {
+      showToast(error.message, "error");
+      return null;
+    }
   };
 
   return { getDetails };
-
-}
+};
 
 export default useAccount;

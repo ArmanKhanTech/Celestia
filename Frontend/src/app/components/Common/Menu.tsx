@@ -11,13 +11,9 @@ const Menu = () => {
   const [uid, setUid] = useState<string>("");
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUid(user.uid);
-      }
-    });
+    setUid(auth.currentUser.uid);
   }, []);
-  
+
   useEffect(() => {
     const path = window.location.pathname.split("/")[1];
     setSelectedItem(path.charAt(0).toUpperCase() + path.slice(1));

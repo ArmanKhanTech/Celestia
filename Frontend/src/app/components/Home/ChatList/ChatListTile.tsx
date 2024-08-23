@@ -22,10 +22,10 @@ const ChatListTile = ({ chat }: ChatListTileProps) => {
           height={40}
           src={chat.avatar}
           alt={`${chat.name}'s avatar`}
-          className="w-10 h-10 rounded-full mr-4"
+          className="w-10 h-10 rounded-md mr-4"
         />
       ) : (
-        <div className="w-10 h-10 rounded-full bg-base-300 mr-4 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-md bg-base-300 mr-4 flex items-center justify-center">
           <FaUser className="w-4 h-4" />
         </div>
       )}

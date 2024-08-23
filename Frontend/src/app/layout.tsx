@@ -14,9 +14,7 @@ export const metadata: Metadata = {
 const ContextWrapper = ({ children }: any) => {
   return (
     <ThemeProvider>
-      <ToastProvider>
-      {children}
-      </ToastProvider>
+      <ToastProvider>{children}</ToastProvider>
     </ThemeProvider>
   );
 };
