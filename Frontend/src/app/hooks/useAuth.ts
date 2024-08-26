@@ -37,10 +37,10 @@ const useAuth = () => {
         showToast("Signed in successfully.", "success");
       window.location.replace("/home");
     } catch (error) {
-      console.log(error);
       showToast(error.message, "error");
+    } finally {
+      return;
     }
-    return;
   };
 
   const signUp = async (email, password, name, username) => {
@@ -81,10 +81,10 @@ const useAuth = () => {
         showToast("Signed up successfully.", "success");
         window.location.replace("/login");
       } catch (error) {
-        console.log(error);
         showToast(error.message, "error");
+      } finally {
+        return;
       }
-      return;
     } else {
       showToast("Username already exists.", "error");
       return;

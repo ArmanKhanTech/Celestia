@@ -1,7 +1,13 @@
 import axios from "axios";
 import { useContext } from "react";
+import {
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
 
 import { ToastContext } from "@/context/ToastProvider";
+import { storage } from "@/lib/firebase";
 
 const useAccount = () => {
   const { showToast } = useContext(ToastContext);
@@ -19,7 +25,80 @@ const useAccount = () => {
     }
   };
 
-  return { getDetails };
+  const changeName = async (uid, name) => {
+    if (!name) {
+      showToast("Name cannot be empty", "error");
+      return null;
+    }
+
+    try {
+      const res = await axios.post(
+        `http://localhost/user/changeName`,
+        { uid, name },
+        { headers: { "Content-Type": "application/json" } },
+      );
+      showToast("Name change successfull", "success");
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      return;
+    }
+  };
+
+  const setStatus = async (uid, status) => {
+    if (!status) {
+      showToast("Status cannot be empty", "error");
+      return null;
+    }
+
+    if (status.length > 100) {
+      showToast("Status cannot be more than 100 characters", "error");
+      return null;
+    }
+
+    try {
+      const res = await axios.post(
+        `http://localhost/user/setStatus`,
+        { uid, status },
+        { headers: { "Content-Type": "application/json" } },
+      );
+      showToast("Status change successfull", "success");
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      return;
+    }
+  };
+
+  const setPfp = async (uid, file) => {
+    if (!file) {
+      showToast("Please select a file", "error");
+      return null;
+    }
+
+    if (file.size > 1000000) {
+      showToast("File size too large", "error");
+      return null;
+    }
+
+    try {
+      const fileRef = storageRef(storage, `pfp/${uid}`);
+      await uploadBytes(fileRef, file);
+      const url = await getDownloadURL(fileRef);
+      await axios.post(
+        `http://localhost/user/setPfp`,
+        { uid, pfp_url: url },
+        { headers: { "Content-Type": "application/json" } },
+      );
+      showToast("Profile picture updated", "success");
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      return;
+    }
+  };
+
+  return { getDetails, changeName, setStatus, setPfp };
 };
 
 export default useAccount;

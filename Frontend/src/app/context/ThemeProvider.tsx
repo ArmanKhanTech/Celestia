@@ -11,24 +11,29 @@ interface ThemeContextType {
 export const ThemeContext = createContext<ThemeContextType>({});
 
 export const ThemeProvider = ({ children }: any) => {
-  const [theme, setTheme] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "light";
-    }
-    return "light";
-  });
+  const [theme, setTheme] = useState<string>("light");
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("theme", theme);
-      const metaThemeColor = document.querySelector("meta[name='theme-color']");
-      if (metaThemeColor) {
-        metaThemeColor.content = themeColor[theme];
-      } else {
-        console.error("Meta tag with name 'theme-color' not found");
-      }
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+      setIsMounted(true);
     }
-  }, [theme]);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem("theme", theme);
+      let metaThemeColor = document.querySelector("meta[name='theme-color']");
+      if (!metaThemeColor) {
+        metaThemeColor = document.createElement("meta");
+        metaThemeColor.name = "theme-color";
+        document.head.appendChild(metaThemeColor);
+      }
+      metaThemeColor.content = themeColor[theme];
+    }
+  }, [theme, isMounted]);
 
   const changeTheme = (nextTheme: string) => {
     setTheme(nextTheme);

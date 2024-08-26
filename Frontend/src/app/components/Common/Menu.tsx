@@ -1,18 +1,15 @@
 "use client";
 
-import { use, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { FaHome, FaUser, FaCog, FaInfoCircle, FaSearch } from "react-icons/fa";
 
 import { auth } from "@/lib/firebase";
+import { UserContext } from "@/context/UserProvider";
 
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Home");
-  const [uid, setUid] = useState<string>("");
-
-  useEffect(() => {
-    setUid(auth.currentUser.uid);
-  }, []);
+  const uid = useContext(UserContext).currentUser.uid;
 
   useEffect(() => {
     const path = window.location.pathname.split("/")[1];

@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { AiOutlineWechat } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdMenu } from "react-icons/io";
 
 import ThemeButton from "@/components/Buttons/ThemeButton";
+import { UserContext } from "@/context/UserProvider";
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { currentUser } = useContext(UserContext);
 
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
@@ -42,14 +44,26 @@ const Header = () => {
       >
         <ul className="flex flex-col w-full lg:self-end items-center space-y-2 lg:ml-auto lg:flex-row lg:space-y-0">
           <ThemeButton />
-          {/* TODO: Hide the button if already logged in. */}
-          <Link
+          {
+            // TODO: FIx with on lg
+            !currentUser ? (
+              <Link
             onClick={handleNavToggle}
             className="text-center rounded-full text-center lg:w-28 border-2 px-6 py-2 bg-base-100 w-full"
             href="/login"
           >
             Login
           </Link>
+            ) : (
+              <Link
+            onClick={handleNavToggle}
+            className="text-center rounded-full text-center lg:w-28 border-2 px-6 py-2 bg-base-100 w-full"
+            href="/home"
+          >
+            Chat
+          </Link>
+            )
+          }
         </ul>
       </nav>
     </header>
