@@ -21,7 +21,7 @@ const ThemeButton = () => {
   };
 
   return (
-    <div className="m-0 w-full">
+    <>
       <button
         className="rounded-full w-full lg:w-28 bg-base-100 border-2 px-6 py-2"
         onClick={toggleDropdown}
@@ -33,7 +33,7 @@ const ThemeButton = () => {
         toggleDropdown={toggleDropdown}
         handleOnClick={handleOnClick}
       />
-    </div>
+    </>
   );
 };
 

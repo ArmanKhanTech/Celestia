@@ -1,19 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineWechat } from "react-icons/ai";
 
 import useAuth from "@/hooks/useAuth";
 import Loading from "@/components/Common/Loading";
+import { UserContext } from "@/context/UserProvider";
+import AlreadyLogged from "@/components/Common/AlreadyLogged";
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { currentUser } = useContext(UserContext);
+
   const { signIn, forgotPassword } = useAuth();
+
+  if (currentUser) {
+    return <AlreadyLogged />;
+  }
 
   return (
     <section className="flex flex-col h-full w-full m-auto items-center justify-center p-5">

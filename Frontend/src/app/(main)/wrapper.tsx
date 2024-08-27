@@ -12,7 +12,7 @@ const MainWrapper = ({ children }: any) => {
   const { currentUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
-  // TODO: Fetch chats and otheer data
+  // TODO: Fetch chats and other data
   // if (loading) {
   //   return (
   //     <div className="flex flex-col items-center justify-center m-auto">

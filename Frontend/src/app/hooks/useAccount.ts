@@ -15,7 +15,7 @@ const useAccount = () => {
   const getDetails = async (uid) => {
     try {
       const res = await axios.get(
-        `http://localhost/user/getdetails?uid=${uid}`,
+        `http://localhost/user/getDetails?uid=${uid}`,
         { headers: { "Content-Type": "application/json" } },
       );
       return res.data;
@@ -24,6 +24,19 @@ const useAccount = () => {
       return null;
     }
   };
+
+  const searchUser = async (uname) => {
+    try {
+        const res = await axios.get(
+            `http://localhost/user/searchUser?uname=${uname}`,
+            { headers: { "Content-Type": "application/json" } },
+        );
+        return res.data.result;
+    } catch (error) {
+        showToast(error.message, "error");
+        return null;
+    }
+};
 
   const changeName = async (uid, name) => {
     if (!name) {
@@ -98,7 +111,7 @@ const useAccount = () => {
     }
   };
 
-  return { getDetails, changeName, setStatus, setPfp };
+  return { getDetails, changeName, setStatus, setPfp, searchUser };
 };
 
 export default useAccount;

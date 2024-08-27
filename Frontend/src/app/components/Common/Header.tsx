@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AiOutlineWechat } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdMenu } from "react-icons/io";
+import { FaArrowRight } from "react-icons/fa6";
 
 import ThemeButton from "@/components/Buttons/ThemeButton";
 import { UserContext } from "@/context/UserProvider";
@@ -42,28 +43,27 @@ const Header = () => {
       <nav
         className={`lg:flex lg:items-end lg:justify-end bg-base-100 ${isNavOpen ? "block" : "hidden"}`}
       >
-        <ul className="flex flex-col w-full lg:self-end items-center space-y-2 lg:ml-auto lg:flex-row lg:space-y-0">
+        <ul className="flex flex-col w-full lg:self-end items-center space-y-2 lg:ml-auto lg:flex-row lg:space-x-2 lg:space-y-0">
           <ThemeButton />
-          {
-            // TODO: FIx with on lg
-            !currentUser ? (
-              <Link
-            onClick={handleNavToggle}
-            className="text-center rounded-full text-center lg:w-28 border-2 px-6 py-2 bg-base-100 w-full"
-            href="/login"
-          >
-            Login
-          </Link>
-            ) : (
-              <Link
-            onClick={handleNavToggle}
-            className="text-center rounded-full text-center lg:w-28 border-2 px-6 py-2 bg-base-100 w-full"
-            href="/home"
-          >
-            Chat
-          </Link>
-            )
-          }
+          {!currentUser ? (
+            <Link
+              onClick={handleNavToggle}
+              className="rounded-full w-full lg:w-32 bg-base-100 border-2 px-6 py-2 text-center flex gap-2 justify-center items-center"
+              href="/login"
+            >
+              <p>Login</p>
+              <FaArrowRight className="w-5 h-5" />
+            </Link>
+          ) : (
+            <Link
+              onClick={handleNavToggle}
+              className="rounded-full w-full lg:w-32 bg-base-100 border-2 px-6 py-2 text-center flex gap-2 justify-center items-center"
+              href="/home"
+            >
+              <p>Chats</p>
+              <FaArrowRight className="w-5 h-5" />
+            </Link>
+          )}
         </ul>
       </nav>
     </header>
