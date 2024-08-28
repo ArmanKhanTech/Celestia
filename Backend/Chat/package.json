@@ -1,10 +1,19 @@
 {
-  "name": "chat",
-  "version": "1.0.0",
-  "description": "Chat mircoservice for Celestia.",
-  "main": "index.js",
-  "scripts": {
-    "run": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+    "name": "chat",
+    "version": "1.0.0",
+    "description": "Chat mirco-service for Celestia.",
+    "main": "server/index.js",
+    "scripts": {
+        "start": "nodemon server/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.19.2",
+        "nodemon": "^3.1.4",
+        "pg": "^8.12.0",
+        "redis": "^4.7.0",
+        "uuid": "^10.0.0",
+        "ws": "^8.18.0"
+    }
 }

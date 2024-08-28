@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { IoIosSend } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import Link from "next/link";
 import { useDebounce } from "use-debounce";
+import { useRouter } from "next/navigation";
 
 import useAccount from "@/hooks/useAccount";
+import useChats from "@/hooks/useChats";
+import { UserContext } from "@/context/UserProvider";
 
 interface User {
   uid: string;
@@ -23,6 +26,11 @@ const SearchPage = () => {
   const [users, setUsers] = useState<any[User]>([]);
 
   const { searchUser } = useAccount();
+  const { createConversation } = useChats();
+
+  const router = useRouter();
+
+  const { currentUser } = useContext(UserContext);
 
   const [debouncedQuery] = useDebounce(query, 500);
 
@@ -54,43 +62,58 @@ const SearchPage = () => {
         !loading ? (
           <>
             {users && users.length > 0 ? (
-              users.map((user) => (
-                <div
-                  key={user.uid}
-                  className="flex items-center justify-between w-full py-2 border-b mb-2"
-                >
-                  <div className="flex items-center gap-2">
-                    {user.pfp_url ? (
-                      <Image
-                        src={user.pfp_url}
-                        alt="Profile Picture"
-                        width={64}
-                        height={64}
-                        className="rounded-md w-16 h-16 object-cover"
-                      />
-                    ) : (
-                      <div className="w-16 h-16 rounded-md bg-base-300 flex items-center justify-center">
-                        <FaUser className="w-8 h-8" />
+              users.map(
+                (user) =>
+                  user.uid !== currentUser.uid && (
+                    <div
+                      key={user.uid}
+                      className="flex items-center justify-between w-full py-2 border-b mb-2"
+                    >
+                      <div className="flex items-center gap-2">
+                        {user.pfp_url ? (
+                          <Image
+                            src={user.pfp_url}
+                            alt="Profile Picture"
+                            width={64}
+                            height={64}
+                            className="rounded-md w-16 h-16 object-cover"
+                          />
+                        ) : (
+                          <div className="w-16 h-16 rounded-md bg-base-300 flex items-center justify-center">
+                            <FaUser className="w-8 h-8" />
+                          </div>
+                        )}
+                        <div className="flex flex-col">
+                          <Link href={`/profile/${user.uid}`}>
+                            <p className="text-lg font-semibold">
+                              {user.uname}
+                            </p>
+                          </Link>
+                          <p className="text-base font-medium">{user.name}</p>
+                        </div>
                       </div>
-                    )}
-                    <div className="flex flex-col">
-                      <Link href={`/profile/${user.uid}`}>
-                        <p className="text-lg font-semibold">{user.uname}</p>
-                      </Link>
-                      <p className="text-base font-medium">{user.name}</p>
+                      <button
+                        onClick={async () => {
+                          const cid = await createConversation(
+                            user.uid + "," + currentUser.uid
+                          );
+                          if (cid) {
+                            router.push(`/chat/${cid}`);
+                          }
+                        }}
+                        className="bg-base-200 p-2 rounded-md w-12 h-12"
+                      >
+                        <IoIosSend className="text-2xl m-auto" />
+                      </button>
                     </div>
-                  </div>
-                  <button className="bg-base-200 p-2 rounded-md w-12 h-12">
-                    <IoIosSend className="text-2xl m-auto" />
-                  </button>
-                </div>
-              ))
+                  )
+              )
             ) : (
               <p className="text-xl mb-4 mt-2">No users found</p>
             )}
           </>
         ) : (
-          <p>Loading...</p>
+          <p>Searching users...</p>
         )
       ) : (
         <p className="text-xl mb-4 mt-2">Search for a user</p>

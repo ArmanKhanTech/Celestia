@@ -1,7 +1,7 @@
 {
     "name": "user",
     "version": "1.0.0",
-    "description": "User mircos-service for Celestia.",
+    "description": "User mirco-service for Celestia.",
     "main": "server/index.js",
     "scripts": {
       "start": "nodemon server/index.js",
