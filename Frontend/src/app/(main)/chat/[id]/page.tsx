@@ -2,6 +2,7 @@
 
 import { IoIosSend } from "react-icons/io";
 import Link from "next/link";
+import { IoMdArrowBack } from "react-icons/io";
 
 import ChatBubble from "@/components/Home/Chat/ChatBubble";
 
@@ -19,9 +20,14 @@ const ChatPage = () => {
     <section className="flex flex-col items-start justify-start gap-2 w-full h-full">
       <div className="sticky top-20 w-full h-16 border-b p-3 pt-2 z-10 bg-base-100">
         <div className="flex items-center justify-between h-full w-full gap-2">
-          <Link href="/profile/1">
-            <h1 className="text-2xl font-semibold cursor-pointer">John Doe</h1>
-          </Link>
+          <div className="flex items-center gap-2">
+            <IoMdArrowBack className="text-2xl" />
+            <Link href={`profile/1`}>
+              <h1 className="text-2xl font-semibold cursor-pointer">
+                John Doe
+              </h1>
+            </Link>
+          </div>
           <p className="text-base text-base-content">Online</p>
         </div>
       </div>

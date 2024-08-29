@@ -1,37 +1,53 @@
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
+import Link from "next/link";
 
 type ChatListTileProps = {
   chat: {
-    id: number;
-    avatar: string;
+    cid: number;
+    pfp_url: string;
     name: string;
-    message: string;
+    uname: string;
+    recentMessage: string;
+    recentMessageTimestamp: string;
   };
 };
 
 const ChatListTile = ({ chat }: ChatListTileProps) => {
   return (
     <div
-      key={chat.id}
-      className="flex items-center cursor-pointer w-full py-3 border-b"
+      key={chat.cid}
+      className="flex items-center cursor-pointer w-full py-3 border-b gap-3"
     >
-      {chat.avatar ? (
+      {chat.pfp_url ? (
         <Image
-          width={40}
-          height={40}
-          src={chat.avatar}
-          alt={`${chat.name}'s avatar`}
-          className="w-10 h-10 rounded-md mr-4"
+          src={chat.pfp_url}
+          alt={`${chat.name}'s Profile Picture`}
+          width={64}
+          height={64}
+          className="rounded-md w-16 h-16 object-cover"
         />
       ) : (
-        <div className="w-10 h-10 rounded-md bg-base-300 mr-4 flex items-center justify-center">
-          <FaUser className="w-4 h-4" />
+        <div className="w-16 h-16 rounded-md bg-base-300 flex items-center justify-center">
+          <FaUser className="w-8 h-8" />
         </div>
       )}
-      <div>
-        <div className="font-bold">{chat.name}</div>
-        <div className="font-medium">{chat.message}</div>
+      <div className="flex flex-col w-full">
+        <div className="flex items-center justify-between gap-2">
+          <Link href={`/chat/${chat.cid}`} className="font-bold">
+            {chat.name}
+          </Link>
+        </div>
+        <div className="font-medium">
+          {chat.recentMessage
+            ? chat.recentMessage.length > 30
+              ? chat.recentMessage.slice(0, 30) + "..."
+              : chat.recentMessage
+            : "Begin a conversation"}
+        </div>
+        <div className="text-sm text-base-content">
+          {chat.recentMessageTimestamp}
+        </div>
       </div>
     </div>
   );

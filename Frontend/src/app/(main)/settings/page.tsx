@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import useAuth from "@/hooks/useAuth";
-import Loading from "@/components/Common/Loading";
+import LoadingAnim from "@/components/Common/LoadingAnim";
 
 const SettingsPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,7 +23,7 @@ const SettingsPage = () => {
         className="px-4 py-2 w-[50%] lg:w-[25%] text-white font-bold text-center bg-red-500 rounded-md"
       >
         {loading ? (
-          <Loading props={"h-6 w-6 text-red-500 fill-white m-auto"} />
+          <LoadingAnim props={"h-6 w-6 text-red-500 fill-white m-auto"} />
         ) : (
           "Log Out"
         )}

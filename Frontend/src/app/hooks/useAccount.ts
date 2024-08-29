@@ -27,16 +27,16 @@ const useAccount = () => {
 
   const searchUser = async (uname) => {
     try {
-        const res = await axios.get(
-            `http://localhost/user/searchUser?uname=${uname}`,
-            { headers: { "Content-Type": "application/json" } },
-        );
-        return res.data.result;
+      const res = await axios.get(
+        `http://localhost/user/searchUser?uname=${uname}`,
+        { headers: { "Content-Type": "application/json" } },
+      );
+      return res.data.result;
     } catch (error) {
-        showToast(error.message, "error");
-        return null;
+      showToast(error.message, "error");
+      return null;
     }
-};
+  };
 
   const changeName = async (uid, name) => {
     if (!name) {

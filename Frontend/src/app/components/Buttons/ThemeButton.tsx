@@ -23,7 +23,7 @@ const ThemeButton = () => {
   return (
     <>
       <button
-        className="rounded-full w-full lg:w-28 bg-base-100 border-2 px-6 py-2"
+        className="rounded-full w-full lg:w-28 bg-base-100 border-2 px-6 py-2 mb-2 lg:mb-0 lg:mr-2"
         onClick={toggleDropdown}
       >
         Theme

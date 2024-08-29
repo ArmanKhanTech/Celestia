@@ -95,7 +95,7 @@ const SearchPage = () => {
                       <button
                         onClick={async () => {
                           const cid = await createConversation(
-                            user.uid + "," + currentUser.uid
+                            user.uid + "," + currentUser.uid,
                           );
                           if (cid) {
                             router.push(`/chat/${cid}`);
@@ -106,17 +106,17 @@ const SearchPage = () => {
                         <IoIosSend className="text-2xl m-auto" />
                       </button>
                     </div>
-                  )
+                  ),
               )
             ) : (
-              <p className="text-xl mb-4 mt-2">No users found</p>
+              <p className="text-xl mb-4 mt-1">No users found</p>
             )}
           </>
         ) : (
-          <p>Searching users...</p>
+          <p className="text-xl mb-4 mt-1">Searching users...</p>
         )
       ) : (
-        <p className="text-xl mb-4 mt-2">Search for a user</p>
+        <p className="text-xl mb-4 mt-1">Search for a user</p>
       )}
     </section>
   );

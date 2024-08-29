@@ -43,7 +43,7 @@ const Header = () => {
       <nav
         className={`lg:flex lg:items-end lg:justify-end bg-base-100 ${isNavOpen ? "block" : "hidden"}`}
       >
-        <ul className="flex flex-col w-full lg:self-end items-center space-y-2 lg:ml-auto lg:flex-row lg:space-x-2 lg:space-y-0">
+        <ul className="flex flex-col w-full lg:self-end items-center lg:ml-auto lg:flex-row">
           <ThemeButton />
           {!currentUser ? (
             <Link

@@ -12,19 +12,19 @@ const MainWrapper = ({ children }: any) => {
   const { currentUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
-  // TODO: Fetch chats and other data
-  // if (loading) {
-  //   return (
-  //     <div className="flex flex-col items-center justify-center m-auto">
-  //       <Loading props={"h-12 w-12 mb-4 text-base-100 fill-base-content"} />
-  //       <p className="text-2xl font-semibold">Loading, Please Wait...</p>
-  //     </div>
-  //   );
-  // }
+  useEffect(() => {
+    if (currentUser) {
+      setLoading(false);
+    }
+  }, [currentUser]);
+
+  if (loading) {
+    return <Loading text="Loading Account..." />;
+  }
 
   return (
     <section className="flex-1 flex h-full min-w-full flex-row">
-      {currentUser ? (
+      {currentUser && !loading ? (
         <>
           <div className="fixed h-full bg-base-100 w-14 lg:w-40 border-r">
             <Menu />

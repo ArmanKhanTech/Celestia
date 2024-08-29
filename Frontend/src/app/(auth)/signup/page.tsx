@@ -6,7 +6,7 @@ import { AiOutlineWechat } from "react-icons/ai";
 import Link from "next/link";
 
 import useAuth from "@/hooks/useAuth";
-import Loading from "@/components/Common/Loading";
+import LoadingAnim from "@/src/app/components/Common/LoadingAnim";
 import { UserContext } from "@/context/UserProvider";
 import AlreadyLogged from "@/components/Common/AlreadyLogged";
 
@@ -107,7 +107,7 @@ const SignupPage = () => {
             className="flex w-full justify-center h-10 rounded-md bg-base-content text-base-100 p-2 text-lg font-semibold leading-6 shadow-sm"
           >
             {loading ? (
-              <Loading props={"h-6 w-6fill-base-100"} />
+              <LoadingAnim props={"h-6 w-6fill-base-100"} />
             ) : (
               <p className="text-base-100">Sign Up</p>
             )}

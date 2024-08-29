@@ -9,6 +9,7 @@ import { FaUser, FaExchangeAlt } from "react-icons/fa";
 import useAccount from "@/hooks/useAccount";
 import { UserContext } from "@/context/UserProvider";
 import { auth } from "@/lib/firebase";
+import LoadingAnim from "@/components/Common/LoadingAnim";
 import Loading from "@/components/Common/Loading";
 
 const ProfilePage = () => {
@@ -35,7 +36,11 @@ const ProfilePage = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <Loading text="Loading Profile..." />
+      </div>
+    );
   }
 
   return (
@@ -86,7 +91,7 @@ const ProfilePage = () => {
                   disabled={loadingPfp}
                 >
                   {loadingPfp ? (
-                    <Loading
+                    <LoadingAnim
                       props={
                         "h-6 w-6 fill-base-100 text-base-content text-center m-auto"
                       }
@@ -130,7 +135,7 @@ const ProfilePage = () => {
                     disabled={loadingName}
                   >
                     {loadingName ? (
-                      <Loading props={"h-6 w-6 fill-base-100"} />
+                      <LoadingAnim props={"h-6 w-6 fill-base-100"} />
                     ) : (
                       <FaExchangeAlt className="w-6 h-6" />
                     )}
@@ -168,7 +173,7 @@ const ProfilePage = () => {
                     disabled={loadingStatus}
                   >
                     {loadingStatus ? (
-                      <Loading props={"h-6 w-6 fill-base-100"} />
+                      <LoadingAnim props={"h-6 w-6 fill-base-100"} />
                     ) : (
                       <FaExchangeAlt className="w-6 h-6" />
                     )}
@@ -187,7 +192,7 @@ const ProfilePage = () => {
           </div>
         </>
       ) : (
-        <p>User not found</p>
+        <p className="text-lg font-semibold">User not found</p>
       )}
     </section>
   );
