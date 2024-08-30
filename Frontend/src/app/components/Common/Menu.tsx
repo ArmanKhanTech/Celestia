@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { FaHome, FaUser, FaCog, FaInfoCircle, FaSearch } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 import { auth } from "@/lib/firebase";
 import { UserContext } from "@/context/UserProvider";
@@ -10,11 +11,21 @@ import { UserContext } from "@/context/UserProvider";
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Home");
   const uid = useContext(UserContext).currentUser.uid;
+  const pathname = usePathname();
 
   useEffect(() => {
-    const path = window.location.pathname.split("/")[1];
-    setSelectedItem(path.charAt(0).toUpperCase() + path.slice(1));
-  }, []);
+    if (pathname === "/home") {
+      setSelectedItem("Home");
+    } else if (pathname === "/search") {
+      setSelectedItem("Search");
+    } else if (pathname === `/profile/${uid}`) {
+      setSelectedItem("Profile");
+    } else if (pathname === "/settings") {
+      setSelectedItem("Settings");
+    } else if (pathname === "/about") {
+      setSelectedItem("About");
+    }
+  }, [pathname]);
 
   const menuItems = [
     { icon: <FaHome />, name: "Home", link: "/home" },

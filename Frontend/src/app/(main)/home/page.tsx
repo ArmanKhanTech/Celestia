@@ -13,6 +13,7 @@ import Loading from "@/components/Common/Loading";
 type Chat = {
   cid: number;
   pfp_url: string;
+  uid: string;
   uname: string;
   name: string;
   recentMessage: string;
@@ -61,6 +62,7 @@ const HomePage = () => {
               {
                 cid: chat.cid,
                 pfp_url: chat.interlocutor.pfp_url,
+                uid: chat.interlocutor.uid,
                 name: chat.interlocutor.name,
                 uname: chat.interlocutor.uname,
                 recentMessage: chat.recentMessage,

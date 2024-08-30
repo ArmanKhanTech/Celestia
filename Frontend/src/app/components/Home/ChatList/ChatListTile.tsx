@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type ChatListTileProps = {
   chat: {
     cid: number;
     pfp_url: string;
+    uid: string;
     name: string;
     uname: string;
     recentMessage: string;
@@ -14,6 +17,8 @@ type ChatListTileProps = {
 };
 
 const ChatListTile = ({ chat }: ChatListTileProps) => {
+  const router = useRouter();
+
   return (
     <div
       key={chat.cid}
@@ -25,18 +30,25 @@ const ChatListTile = ({ chat }: ChatListTileProps) => {
           alt={`${chat.name}'s Profile Picture`}
           width={64}
           height={64}
-          className="rounded-md w-16 h-16 object-cover"
+          className="rounded-md w-14 h-12 object-cover"
         />
       ) : (
-        <div className="w-16 h-16 rounded-md bg-base-300 flex items-center justify-center">
-          <FaUser className="w-8 h-8" />
+        <div className="w-14 h-12 rounded-md bg-base-300 flex items-center justify-center">
+          <FaUser className="w-6 h-6" />
         </div>
       )}
       <div className="flex flex-col w-full">
         <div className="flex items-center justify-between gap-2">
-          <Link href={`/chat/${chat.cid}`} className="font-bold">
+          <button
+            onClick={() => {
+              router.push(
+                `/chat/${chat.cid}?uid=${chat.uid}&uname=${chat.uname}&name=${chat.name}&pfp_url=${chat.pfp_url}`
+              );
+            }}
+            className="font-bold"
+          >
             {chat.name}
-          </Link>
+          </button>
         </div>
         <div className="font-medium">
           {chat.recentMessage
