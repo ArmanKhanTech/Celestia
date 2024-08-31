@@ -1,16 +1,16 @@
-Login
-Signup
-Home
+Login (done)
+Signup (done)
+Home (done)
 Chat
-Settings
+Settings (done)
 About
-Loading
+Loading (done)
 
 Redis pub/sub for communication
 Web sockets for connection
-Postgres to store user data
+Postgres to store user data (done)
 End-to-end encryption
-Firebase for blob storage
+Firebase for blob storage (done)
 
 Chat: Text
 
@@ -19,15 +19,15 @@ groups
 
 Microservices:
 Chat 
-Auth
-User
+Auth (done)
+User (done)
 Group
 
-API gateway: ngnix
+API gateway: ngnix (done)
 
 Tables:
-Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status
-Conversations: cid, participants
-Messages: mid, cid, message, sender, sent_at, receiver, received_at, status
+Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status (done)
+Conversations: cid, participants (done)
+Messages: mid, cid, message, sender, sent_at, receiver, received_at, status (done)
 Groups: gid, cid, gname, members, desc, admins, created_at
 
