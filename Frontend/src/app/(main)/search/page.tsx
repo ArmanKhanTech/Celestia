@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import useAccount from "@/hooks/useAccount";
 import useChats from "@/hooks/useChats";
 import { UserContext } from "@/context/UserProvider";
+import Pfp from "@/components/Common/Pfp";
 
 interface User {
   uid: string;
@@ -70,19 +71,7 @@ const SearchPage = () => {
                       className="flex items-center justify-between w-full py-2 border-b mb-2"
                     >
                       <div className="flex items-center gap-2">
-                        {user.pfp_url ? (
-                          <Image
-                            src={user.pfp_url}
-                            alt="Profile Picture"
-                            width={64}
-                            height={64}
-                            className="rounded-md w-16 h-16 object-cover"
-                          />
-                        ) : (
-                          <div className="w-16 h-16 rounded-md bg-base-300 flex items-center justify-center">
-                            <FaUser className="w-8 h-8" />
-                          </div>
-                        )}
+                        <Pfp src={user.pfp_url} props="w-12 h-12 rounded-md" />
                         <div className="flex flex-col">
                           <Link href={`/profile/${user.uid}`}>
                             <p className="text-lg font-semibold">
@@ -95,7 +84,7 @@ const SearchPage = () => {
                       <button
                         onClick={async () => {
                           const cid = await createConversation(
-                            user.uid + "," + currentUser.uid,
+                            user.uid + "," + currentUser.uid
                           );
                           if (cid) {
                             router.push(`/chat/${cid}`);
@@ -106,7 +95,7 @@ const SearchPage = () => {
                         <IoIosSend className="text-2xl m-auto" />
                       </button>
                     </div>
-                  ),
+                  )
               )
             ) : (
               <p className="text-xl mb-4 mt-1">No users found</p>

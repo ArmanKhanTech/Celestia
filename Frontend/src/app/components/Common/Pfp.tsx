@@ -16,12 +16,12 @@ const Pfp = ({ src, props }: PfpProps) => {
         <Image
           src={src}
           alt="Profile Picture"
-          width={64}
-          height={64}
+          width={1920}
+          height={1080}
           className="rounded-md w-full h-full object-cover"
         />
       ) : (
-        <FaUser className="m-4 w-full h-full" />
+        <FaUser className="w-1/2 h-1/2" />
       )}
     </div>
   );

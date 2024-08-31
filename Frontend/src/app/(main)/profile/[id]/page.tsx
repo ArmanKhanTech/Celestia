@@ -12,6 +12,7 @@ import { UserContext } from "@/context/UserProvider";
 import { auth } from "@/lib/firebase";
 import LoadingAnim from "@/components/Common/LoadingAnim";
 import Loading from "@/components/Common/Loading";
+import Pfp from "@/src/app/components/Common/Pfp";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -29,13 +30,11 @@ const ProfilePage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchUser = async () => {
+    (async () => {
       const data = await getDetails(id);
       setUser(data);
       setLoading(false);
-    };
-
-    fetchUser();
+    })();
   }, []);
 
   if (loading) {
@@ -59,19 +58,7 @@ const ProfilePage = () => {
             )}
             <p className="text-3xl font-semibold">Profile</p>
           </div>
-          {user.pfp_url ? (
-            <Image
-              src={user.pfp_url}
-              alt="Profile Picture"
-              width={256}
-              height={256}
-              className="rounded-md w-36 h-36 object-cover mt-4"
-            />
-          ) : (
-            <div className="w-36 h-36 mt-4 rounded-md bg-base-300 flex items-center justify-center">
-              <FaUser className="w-12 h-12" />
-            </div>
-          )}
+          <Pfp src={user.pfp_url} props="w-44 h-44 rounded-md mt-4" />
           {currentUser.uid === id && (
             <>
               <div className="flex flex-col items-start w-full lg:w-[40%] justify-start mt-4">

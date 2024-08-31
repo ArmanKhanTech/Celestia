@@ -39,7 +39,7 @@ const HomePage = () => {
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
-    const fetch = async () => {
+    (async () => {
       if (currentUser) {
         Promise.all([
           setChats(await fetchConversations(currentUser.uid)),
@@ -47,9 +47,7 @@ const HomePage = () => {
         ]);
       }
       setLoading(false);
-    };
-
-    fetch();
+    })();
   }, []);
 
   if (loading) {

@@ -37,7 +37,23 @@ const useChats = () => {
     }
   };
 
-  return { createConversation, fetchConversations };
+  const fetchMessages = async (cid) => {
+    try {
+      const response = await axios.get(
+        `http://localhost/chat/fetchMessages?cid=${cid}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      showToast(error.response.data.message, "error");
+    }
+  }
+
+  return { createConversation, fetchConversations, fetchMessages };
 };
 
 export default useChats;

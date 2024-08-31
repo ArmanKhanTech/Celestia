@@ -8,7 +8,7 @@ type NewGroupDialogProps = {
 const NewGroupDialog = ({ isOpened, onClose }: NewGroupDialogProps) => {
   return (
     <div
-      className={`fixed inset-0 z-50 grid h-screen w-screen place-items-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ${isOpened ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} `}
+      className={`fixed inset-0 z-50 p-5 grid h-screen w-screen place-items-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ${isOpened ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} `}
     >
       <div className="relative overflow-y-auto w-full max-w-96 p-5 max-h-96 rounded-lg text-lg leading-relaxed bg-base-200">
         <div className="flex items-center text-2xl antialiased font-semibold leading-snug shrink-0">
@@ -23,7 +23,7 @@ const NewGroupDialog = ({ isOpened, onClose }: NewGroupDialogProps) => {
             <input
               type="text"
               id="group-name"
-              className="border-2 w-full border-base-200 p-2 rounded-lg mt-2"
+              className="w-full p-2 rounded-md lg mt-1 border"
               placeholder="Group Name"
             />
           </div>
@@ -31,12 +31,12 @@ const NewGroupDialog = ({ isOpened, onClose }: NewGroupDialogProps) => {
             <label htmlFor="group-description">Group Description</label>
             <textarea
               id="group-description"
-              className="border-2 w-full border-base-200 p-2 rounded-lg  mt-2"
+              className="w-full p-2 rounded-md border mt-1"
               placeholder="Group Description"
             />
           </div>
           <button
-            className="bg-base-content text-base-100 rounded-lg p-2"
+            className="bg-base-content text-base-100 font-semibold rounded-md p-2"
             type="submit"
           >
             Create Group

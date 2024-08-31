@@ -4,7 +4,7 @@ const fetchMessages = async (req, res) => {
     const { cid } = req.query;
 
     const query1 = `
-        SELECT  mid, cid, message, sender, sent_at, receiver, received_at, status
+        SELECT  *
         FROM messages
         WHERE cid = $1
     `;
