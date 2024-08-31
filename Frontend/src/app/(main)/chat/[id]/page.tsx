@@ -1,14 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { IoIosSend, IoMdArrowBack } from "react-icons/io";
+import { IoIosSend } from "react-icons/io";
 import Link from "next/link";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaArrowLeft } from "react-icons/fa";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import ChatBubble from "@/components/Home/Chat/ChatBubble";
+import Pfp from "@/components/Common/Pfp";
 
 const ChatPage = () => {
   const pathname = usePathname();
@@ -29,23 +30,14 @@ const ChatPage = () => {
 
   return (
     <section className="flex flex-col items-start justify-start gap-2 w-full h-full">
-      <div className="sticky top-24 w-full h-16 border-b pb-6 px-4 pt-2 z-10 bg-base-100">
+      <div className="sticky top-24 w-full h-16 border-b pb-6 px-2 lg:px-4 pt-2 z-10 bg-base-100">
         <div className="flex items-center justify-between h-full w-full gap-2">
-          <div className="flex items-center gap-4">
-            <IoMdArrowBack onClick={() => router.back()} className="text-2xl" />
-            {interlocutor.pfp_url !== "null" ? (
-              <Image
-                src={interlocutor.pfp_url}
-                alt={`${interlocutor.name}'s Profile Picture`}
-                width={64}
-                height={64}
-                className="rounded-md w-12 h-12 object-cover"
-              />
-            ) : (
-              <div className="w-12 h-12 rounded-md bg-base-300 flex items-center justify-center">
-                <FaUser className="w-6 h-6" />
-              </div>
-            )}
+          <div className="flex items-center gap-4 w-full">
+            <FaArrowLeft
+              onClick={() => router.back()}
+              className="h-6 w-6 cursor-pointer"
+            />
+            <Pfp src={interlocutor.pfp_url} props="w-16 h-full rounded-md" />
             <Link href={`/profile/${interlocutor.uid}`}>
               <h1 className="text-2xl font-semibold cursor-pointer">
                 {interlocutor.name}
@@ -56,9 +48,9 @@ const ChatPage = () => {
         </div>
       </div>
       <div className="flex flex-col w-full h-full p-3 overflow-y-auto">
-        {/* {messages.map((message) => (
+        {messages.map((message) => (
           <ChatBubble key={message.id} message={message} />
-        ))} */}
+        ))}
       </div>
       <div className="sticky bottom-0 w-full border-t p-3 z-10 bg-base-100">
         <div className="flex items-center justify-between h-full w-full gap-2">

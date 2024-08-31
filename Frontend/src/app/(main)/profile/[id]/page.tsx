@@ -4,7 +4,8 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
-import { FaUser, FaExchangeAlt } from "react-icons/fa";
+import { FaUser, FaExchangeAlt, FaArrowLeft } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 import useAccount from "@/hooks/useAccount";
 import { UserContext } from "@/context/UserProvider";
@@ -24,6 +25,8 @@ const ProfilePage = () => {
   const [loadingStatus, setLoadingStatus] = useState(false);
 
   const { getDetails, changeName, setStatus, setPfp } = useAccount();
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -47,7 +50,15 @@ const ProfilePage = () => {
     <section className="flex flex-col items-start justify-start w-full h-full p-3 lg:p-6">
       {user ? (
         <>
-          <p className="text-3xl font-semibold">Profile</p>
+          <div className="flex items-center gap-4 w-full">
+            {currentUser.uid !== id && (
+              <FaArrowLeft
+                onClick={() => router.back()}
+                className="h-6 w-6 cursor-pointer"
+              />
+            )}
+            <p className="text-3xl font-semibold">Profile</p>
+          </div>
           {user.pfp_url ? (
             <Image
               src={user.pfp_url}

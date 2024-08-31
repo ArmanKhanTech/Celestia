@@ -5,27 +5,35 @@ import Link from "next/link";
 import { FaHome, FaUser, FaCog, FaInfoCircle, FaSearch } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
-import { auth } from "@/lib/firebase";
 import { UserContext } from "@/context/UserProvider";
 
 const Menu = () => {
   const [selectedItem, setSelectedItem] = useState<string>("Home");
-  const uid = useContext(UserContext).currentUser.uid;
+  const { currentUser } = useContext(UserContext);
+  const uid = currentUser?.uid;
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === "/home") {
-      setSelectedItem("Home");
-    } else if (pathname === "/search") {
-      setSelectedItem("Search");
-    } else if (pathname === `/profile/${uid}`) {
-      setSelectedItem("Profile");
-    } else if (pathname === "/settings") {
-      setSelectedItem("Settings");
-    } else if (pathname === "/about") {
-      setSelectedItem("About");
+    switch (pathname) {
+      case "/home":
+        setSelectedItem("Home");
+        break;
+      case "/search":
+        setSelectedItem("Search");
+        break;
+      case `/profile/${uid}`:
+        setSelectedItem("Profile");
+        break;
+      case "/settings":
+        setSelectedItem("Settings");
+        break;
+      case "/about":
+        setSelectedItem("About");
+        break;
+      default:
+        setSelectedItem("");
     }
-  }, [pathname]);
+  }, [pathname, uid]);
 
   const menuItems = [
     { icon: <FaHome />, name: "Home", link: "/home" },

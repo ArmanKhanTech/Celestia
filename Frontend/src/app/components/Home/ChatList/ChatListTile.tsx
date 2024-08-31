@@ -4,6 +4,8 @@ import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
+import Pfp from "@/components/Common/Pfp";
+
 type ChatListTileProps = {
   chat: {
     cid: number;
@@ -24,19 +26,7 @@ const ChatListTile = ({ chat }: ChatListTileProps) => {
       key={chat.cid}
       className="flex items-center cursor-pointer w-full py-3 border-b gap-3"
     >
-      {chat.pfp_url ? (
-        <Image
-          src={chat.pfp_url}
-          alt={`${chat.name}'s Profile Picture`}
-          width={64}
-          height={64}
-          className="rounded-md w-14 h-12 object-cover"
-        />
-      ) : (
-        <div className="w-14 h-12 rounded-md bg-base-300 flex items-center justify-center">
-          <FaUser className="w-6 h-6" />
-        </div>
-      )}
+      <Pfp src={chat.pfp_url} props="w-16 h-full rounded-md" />
       <div className="flex flex-col w-full">
         <div className="flex items-center justify-between gap-2">
           <button

@@ -55,6 +55,7 @@ const fetchConversations = async (req, res) => {
         });
         return res.status(200).json(response);
     } catch (err) {
+        console.error('Fetch conversations error', err);
         return res.status(500).json({ message: 'Failed to fetch conversations' });
     }
 }
