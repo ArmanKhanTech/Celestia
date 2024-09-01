@@ -31,6 +31,7 @@ const ChatListTile = ({ chat }: ChatListTileProps) => {
         <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => {
+              console.log(chat.pfp_url);
               router.push(
                 `/chat/${chat.cid}?uid=${chat.uid}&uname=${chat.uname}&name=${chat.name}&pfp_url=${chat.pfp_url}`
               );

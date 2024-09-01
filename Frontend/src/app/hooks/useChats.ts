@@ -1,10 +1,53 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 
 import { ToastContext } from "@/context/ToastProvider";
 
 const useChats = () => {
   const { showToast } = useContext(ToastContext);
+
+  const socketRef = useRef<WebSocket | null>(null);
+
+  // TODO: Create socket connection only once
+  useEffect(() => {
+    // (directly send request to the server because 
+    // proxy is not yet configured for WebSocket protocol)
+    socketRef.current = new WebSocket("ws://localhost:3003");
+
+    socketRef.current.onopen = () => {
+      console.log("WebSocket connection established");
+    };
+
+    socketRef.current.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      receiveMessage(message);
+    };
+
+    socketRef.current.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    socketRef.current.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      socketRef.current?.close();
+    };
+  }, []);
+
+  const sendMessage = (message) => {
+    if (socketRef.current?.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify(message));
+    } else {
+      showToast("Unable to send message", "error");
+    }
+  };
+
+  const receiveMessage = (message: any) => {
+    console.log("Received message:", message);
+    // Handle the received message (e.g., update state or UI)
+  };
 
   const createConversation = async (participants: string) => {
     try {
@@ -53,7 +96,7 @@ const useChats = () => {
     }
   }
 
-  return { createConversation, fetchConversations, fetchMessages };
+  return { createConversation, fetchConversations, fetchMessages, sendMessage, receiveMessage };
 };
 
 export default useChats;

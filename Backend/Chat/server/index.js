@@ -7,77 +7,81 @@ const http = require('http');
 const routes = require('../routes');
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(routes);
+
 const server = http.createServer(app);
+
 const wss = new WebSocket.Server({ noServer: true });
+const subscribedChannels = new Set();
 
-const redisPublisher = redis.createClient({ host: 'localhost', port: 6379 });
-const redisSubscriber = redis.createClient({ host: 'localhost', port: 6379 });
+server.listen(3003, () => {
+    console.log('Chat micro-service is running on port 3003');
+});
 
-redisSubscriber.subscribedChannels = new Set();
+server.on('upgrade', (request, socket, head) => {
+    wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit('connection', ws, request);
+    });
+});
+
+const redisPublisher = redis.createClient({ url: 'redis://localhost:6379' });
+const redisSubscriber = redis.createClient({ url: 'redis://localhost:6379' });
+
+(async () => {
+    try {
+        await redisPublisher.connect();
+    } catch (err) {
+        console.error('Failed to connect to Redis publisher:', err);
+        process.exit(1);
+    }
+
+    try {
+        await redisSubscriber.connect();
+    } catch (err) {
+        console.error('Failed to connect to Redis subscriber:', err);
+        process.exit(1);
+    }
+})();
 
 wss.on('connection', (ws) => {
-    let conversationId;
+    // change status of user to online
+    console.log('WebSocket client connected');
 
-    ws.on('message', (message) => {
+    ws.on('message', async (message) => {
         try {
             const parsedMessage = JSON.parse(message);
-            conversationId = parsedMessage.conversationId;
+            const cid = parsedMessage.cid;
 
-            // Subscribe to the conversation channel if not already subscribed
-            if (!redisSubscriber.subscribedChannels.has(conversationId)) {
-                redisSubscriber.subscribe(conversationId, (err) => {
-                    if (err) {
-                        console.error(`Failed to subscribe to channel ${conversationId}:`, err);
-                    } else {
-                        redisSubscriber.subscribedChannels.add(conversationId);
-                    }
+            if (!subscribedChannels.has(cid)) {
+                await redisSubscriber.subscribe(cid, (message, cid) => {
+                    wss.clients.forEach((client) => {
+                        if (client.readyState === WebSocket.OPEN) {
+                            client.send(message);
+                        }
+                    });
                 });
+                subscribedChannels.add(cid);
             }
 
-            // Publish message to Redis channel
-            redisPublisher.publish(conversationId, message);
+            await redisPublisher.publish(cid, message, (err) => {
+                if (err) {
+                    console.error('Failed to publish message:', err);
+                }
+            });
         } catch (err) {
             console.error('Failed to process message:', err);
         }
     });
 
     ws.on('close', () => {
-        // Handle WebSocket close event if needed
+        // change status of user to offline and modify last seen
+        console.log('WebSocket client disconnected');
     });
 
     ws.on('error', (err) => {
         console.error('WebSocket error:', err);
     });
-});
-
-redisSubscriber.on('message', (channel, message) => {
-    // Broadcast message to all WebSocket clients subscribed to the conversation
-    wss.clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-            try {
-                const parsedMessage = JSON.parse(message);
-                if (parsedMessage.conversationId === channel) {
-                    client.send(message);
-                }
-            } catch (err) {
-                console.error('Failed to send message to client:', err);
-            }
-        }
-    });
-});
-
-redisSubscriber.on('error', (err) => {
-    console.error('Redis subscriber error:', err);
-});
-
-redisPublisher.on('error', (err) => {
-    console.error('Redis publisher error:', err);
-});
-
-app.use(cors());
-app.use(express.json());
-app.use(routes);
-
-server.listen(3003, () => {
-    console.log('Chat micro-service is running on port 3003');
 });

@@ -28,7 +28,9 @@ const ChatPage = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { fetchMessages } = useChats();
+  const { fetchMessages, sendMessage, receiveMessage } = useChats();
+
+  const cid = pathname.split("/")[2];
 
   const [interlocutor, setInterlocutor] = useState({
     uid: searchParams.get("uid"),
@@ -37,10 +39,11 @@ const ChatPage = () => {
     pfp_url: searchParams.get("pfp_url"),
   });
   const [messages, setMessages] = useState<Message>([]);
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     (async () => {
-      const response = await fetchMessages(pathname.split("/")[2]);
+      const response = await fetchMessages(cid);
       setMessages(response);
     })();
   }, []);
@@ -83,10 +86,20 @@ const ChatPage = () => {
         <div className="flex items-center justify-between h-full w-full gap-2">
           <input
             type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
             className="w-full border p-3 rounded-md h-full bg-base-200"
             placeholder="Type a message"
           />
-          <button className="bg-base-200 p-2.5 rounded-md h-full w-12 border">
+          <button
+            onClick={() =>
+              sendMessage({
+                cid: cid,
+                messages: newMessage,
+              })
+            }
+            className="bg-base-200 p-2.5 rounded-md h-full w-12 border"
+          >
             <IoIosSend className="text-2xl m-auto" />
           </button>
         </div>
