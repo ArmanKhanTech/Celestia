@@ -92,7 +92,7 @@ Follow the instructions below to get started.
     <p>Redis</p>
   </li>
   <li>
-    <p>Nginx</p>
+    <p>nginx</p>
   </li>
  <li>
     <p>Firebase Account (Spark Plan)</p>
@@ -118,7 +118,9 @@ Follow the instructions below to get started.
 
 4. Additional Note: Redis isn't natively supported on Windows. You'll have to run it within WSL instead. Follow [this](https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-windows/) tutorial.
 
-5. Execute the following commands from the root dir of this project:
+5. Paste your own Firebase configs [here](https://github.com/ArmanKhanTech/Celestia/blob/master/Frontend/src/app/lib/firebase.ts) or just use mine instead.
+
+6. Execute the following commands from the root dir of this project:
 
 ```js
 cd Frontend
@@ -157,14 +159,15 @@ npm run start   // Start Auth Microservice
 1. Websockets for real-time, bi-directional communication.
 2. Redis Pub-Sub for real-time chatting.
 3. Firebase Storage for storing DPs.
-4. PostgreSQL is used to store user info and conversations.
-5. Microservices:
+4. Firebase Authentication for authenticating users and automated session management.
+5. PostgreSQL is used to store user info and conversations.
+6. Microservices:
    <br>&emsp;a. Chat 
    <br>&emsp;b. Auth 
    <br>&emsp;c. User 
    <br>&emsp;d. Group (Pending)
-6. Web Server & API Gateway: nginx
-7. Tables:
+7. Web Server & API Gateway: nginx
+8. Tables:
    <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status
    <br>&emsp;b. Conversations: cid, participants 
    <br>&emsp;c. Messages: mid, cid, message, sender, sent_at, receiver, received_at, status 
