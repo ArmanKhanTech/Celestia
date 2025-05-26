@@ -163,7 +163,7 @@ Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
@@ -184,7 +184,7 @@ Project Link - [https://github.com/ArmanKhanTech/Celestia](https://github.com/Ar
 [issues-shield]: https://img.shields.io/github/issues/ArmanKhanTech/Celestia.svg?style=for-the-badge
 [issues-url]: https://github.com/ArmanKhanTech/Celestia/issues
 [license-shield]: https://img.shields.io/github/license/ArmanKhanTech/Celestia.svg?style=for-the-badge
-[license-url]: https://github.com/ArmanKhanTech/Celestia/blob/master/LICENSE.txt
+[license-url]: https://github.com/ArmanKhanTech/Celestia/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&Screenshot=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/arman-khan-25b624205/
 [nodejs]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
