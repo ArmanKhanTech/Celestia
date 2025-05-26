@@ -66,6 +66,7 @@ Celestia is a modern real-time chat application built with microservices archite
 * [![NextJS][nextjs]][NextJS-url]
 * [![TailwindCSS][tailwindcss]][tailwindcss-url]
 * [![NodeJS][nodejs]][nodejs-url]
+* [![ExpressJS][expressjs]][expressjs-url]
 * [![PostgreSQL][postgresql]][postgresql-url]
 * [![Redis][redis]][redis-url]
 * [![Firebase][firebase]][firebase-url]
@@ -202,3 +203,5 @@ Project Link - [https://github.com/ArmanKhanTech/Celestia](https://github.com/Ar
 [postgresql-url]: https://www.postgresql.org/
 [tailwindcss]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
 [tailwindcss-url]: https://tailwindcss.com/
+[expressjs]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[expressjs-url]: https://expressjs.com/
