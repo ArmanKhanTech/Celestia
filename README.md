@@ -122,23 +122,23 @@ Follow the instructions below to get started.
 
 6. Execute the following commands from the root dir of this project:
 
-```js
-cd Frontend
-
-npm run start   // Start the NextJS Development Server
-
-cd ../Backend/User
-
-npm run start   // Start User Microservice
-
-cd ../Chat
-
-npm run start   // Start Chat Microservice
-
-cd ../Auth
-
-npm run start   // Start Auth Microservice
-``` 
+      ```js
+      cd Frontend
+      
+      npm run start   // Start the NextJS Development Server
+      
+      cd ../Backend/User
+      
+      npm run start   // Start User Microservice
+      
+      cd ../Chat
+      
+      npm run start   // Start Chat Microservice
+      
+      cd ../Auth
+      
+      npm run start   // Start Auth Microservice
+      ``` 
 
 6. Finally, start the nginx web server by executing `start nginx`. (Note: `cd` into `your-nginx-installation-path` first in-case you haven't set the ENV for nginx yet.)
    
