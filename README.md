@@ -58,7 +58,7 @@
 
 ## About the Project
 
-Celestia is a next-gen real-time chat application for modern users.
+Celestia is a modern real-time chat application built with microservices architecture. It supports 1:1 and group messaging, user profiles, real-time communication via WebSockets and Redis Pub/Sub, and a PostgreSQL-backed storage system. Firebase is used for profile media, and Nginx handles routing and gateway management. Currently under active development.
 
 
 ### Built with
