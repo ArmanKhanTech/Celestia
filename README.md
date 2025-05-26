@@ -112,7 +112,34 @@ Follow the instructions below to get started.
    git clone https://github.com/ArmanKhanTech/Celestia.git
    ```
 
+2. Configure nginx by pasting [this](https://github.com/ArmanKhanTech/Celestia/blob/master/Backend/nginx.conf) file at `your-nginx-installation-path/conf`
 
+3. Start PostgreSQL and Redis servers.
+
+4. Additional Note: Redis isn't natively supported on Windows. You'll have to run it within WSL instead. Follow [this](https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-windows/) tutorial.
+
+5. Execute the following commands from the root dir of this project:
+
+```js
+cd Frontend
+
+npm run start   // Start the NextJS Development Server
+
+cd ../Backend/User
+
+npm run start   // Start User Microservice
+
+cd ../Chat
+
+npm run start   // Start Chat Microservice
+
+cd ../Auth
+
+npm run start   // Start Auth Microservice
+``` 
+
+6. Finally, start the nginx web server by executing `start nginx`. (Note: `cd` into `your-nginx-installation-path` first in-case you haven't set the ENV for nginx yet.)
+   
 
 ## Features
 
