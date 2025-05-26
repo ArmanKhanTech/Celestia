@@ -45,7 +45,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#technical-description">Technical Description</a></li>
     <li><a href="#screenshots">Screenshots</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -57,7 +58,7 @@
 
 ## About the Project
 
-Celestia is a next-gen real-time chat application for modern users.
+Celestia is a modern real-time chat application built with microservices architecture. It supports 1:1 and group messaging, user profiles, real-time communication via WebSockets and Redis Pub/Sub, and a PostgreSQL-backed storage system. Firebase is used for profile media, and Nginx handles routing and gateway management. Currently under active development.
 
 
 ### Built with
@@ -65,6 +66,7 @@ Celestia is a next-gen real-time chat application for modern users.
 * [![NextJS][nextjs]][NextJS-url]
 * [![TailwindCSS][tailwindcss]][tailwindcss-url]
 * [![NodeJS][nodejs]][nodejs-url]
+* [![ExpressJS][expressjs]][expressjs-url]
 * [![PostgreSQL][postgresql]][postgresql-url]
 * [![Redis][redis]][redis-url]
 * [![Firebase][firebase]][firebase-url]
@@ -133,13 +135,13 @@ Follow the instructions below to get started.
    <br>&emsp;a. Chat 
    <br>&emsp;b. Auth 
    <br>&emsp;c. User 
-   <br>&emsp;d. Group
-6. API Gateway: Nginx
+   <br>&emsp;d. Group (Pending)
+6. Web Server & API Gateway: nginx
 7. Tables:
-   <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status (done)
-   <br>&emsp;b. Conversations: cid, participants (done)
-   <br>&emsp;c. Messages: mid, cid, message, sender, sent_at, receiver, received_at, status (done)
-   <br>&emsp;d. Groups: gid, cid, gname, members, desc, admins, created_at
+   <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status
+   <br>&emsp;b. Conversations: cid, participants 
+   <br>&emsp;c. Messages: mid, cid, message, sender, sent_at, receiver, received_at, status 
+   <br>&emsp;d. Groups (Pending): gid, cid, gname, members, desc, admins, created_at
    
 
 ## Screenshots
@@ -163,7 +165,7 @@ Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
@@ -184,7 +186,7 @@ Project Link - [https://github.com/ArmanKhanTech/Celestia](https://github.com/Ar
 [issues-shield]: https://img.shields.io/github/issues/ArmanKhanTech/Celestia.svg?style=for-the-badge
 [issues-url]: https://github.com/ArmanKhanTech/Celestia/issues
 [license-shield]: https://img.shields.io/github/license/ArmanKhanTech/Celestia.svg?style=for-the-badge
-[license-url]: https://github.com/ArmanKhanTech/Celestia/blob/master/LICENSE.txt
+[license-url]: https://github.com/ArmanKhanTech/Celestia/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&Screenshot=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/arman-khan-25b624205/
 [nodejs]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
@@ -201,3 +203,5 @@ Project Link - [https://github.com/ArmanKhanTech/Celestia](https://github.com/Ar
 [postgresql-url]: https://www.postgresql.org/
 [tailwindcss]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
 [tailwindcss-url]: https://tailwindcss.com/
+[expressjs]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[expressjs-url]: https://expressjs.com/
