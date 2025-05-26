@@ -134,13 +134,13 @@ Follow the instructions below to get started.
    <br>&emsp;a. Chat 
    <br>&emsp;b. Auth 
    <br>&emsp;c. User 
-   <br>&emsp;d. Group
+   <br>&emsp;d. Group (Pending)
 6. Web Server & API Gateway: nginx
 7. Tables:
-   <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status (done)
-   <br>&emsp;b. Conversations: cid, participants (done)
-   <br>&emsp;c. Messages: mid, cid, message, sender, sent_at, receiver, received_at, status (done)
-   <br>&emsp;d. Groups: gid, cid, gname, members, desc, admins, created_at
+   <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status
+   <br>&emsp;b. Conversations: cid, participants 
+   <br>&emsp;c. Messages: mid, cid, message, sender, sent_at, receiver, received_at, status 
+   <br>&emsp;d. Groups (Pending): gid, cid, gname, members, desc, admins, created_at
    
 
 ## Screenshots
