@@ -135,7 +135,7 @@ Follow the instructions below to get started.
    <br>&emsp;b. Auth 
    <br>&emsp;c. User 
    <br>&emsp;d. Group
-6. API Gateway: Nginx
+6. Web Server & API Gateway: nginx
 7. Tables:
    <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status (done)
    <br>&emsp;b. Conversations: cid, participants (done)
