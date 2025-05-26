@@ -56,7 +56,7 @@ wss.on('connection', (ws) => {
             const cid = parsedMessage.cid;
 
             if (!subscribedChannels.has(cid)) {
-                await redisSubscriber.subscribe(cid, (message, cid) => {
+                await redisSubscriber.subscribe(cid, (message) => {
                     wss.clients.forEach((client) => {
                         if (client.readyState === WebSocket.OPEN) {
                             client.send(message);
@@ -72,6 +72,7 @@ wss.on('connection', (ws) => {
                 }
             });
         } catch (err) {
+            // TODO: send error message to client
             console.error('Failed to process message:', err);
         }
     });
