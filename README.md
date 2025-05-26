@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ArmanKhanTech/Celestia/">
-    <img src="https://github.com/ArmanKhanTech/Celestia/blob/master/Frontend/public/logo.png" alt="Logo" width="90" height="80" >
+    <img src="https://github.com/ArmanKhanTech/Celestia/blob/master/Frontend/public/logo.png" alt="Logo" width="80" height="80" >
   </a>
 
   <h3 align="center">Celestia</h3>
