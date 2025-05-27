@@ -152,6 +152,7 @@ Follow the instructions below to get started.
 5. User Lookup (Search users by their usernames)
 6. E2EE (Pending)
 7. Supported Message Format: Text Only
+8. 15+ Themes
 
 
 ## Technical Description
