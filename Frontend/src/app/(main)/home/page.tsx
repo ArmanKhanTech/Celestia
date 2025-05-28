@@ -13,7 +13,7 @@ import Loading from "@/components/Common/Loading";
 import ChatListPlaceholder from "@/components/Home/ChatList/ChatListPlaceholder";
 import GroupListHeader from "@/components/Home/Group/GroupListHeader";
 import GroupListPlaceholder from "@/components/Home/Group/GroupListPlaceholder";
-import { RecentChat, RecentGroupChat } from "../../lib/types";
+import { RecentChat, RecentGroupChat } from "@/lib/types";
 
 const HomePage = () => {
   const pathname = usePathname();

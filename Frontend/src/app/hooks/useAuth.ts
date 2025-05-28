@@ -76,20 +76,6 @@ const useAuth = () => {
     }
   };
 
-  const toggleOnlineStatus = async (status) => {
-    try {
-      await axios.post(
-        "http://localhost/user/toggleOnlineStatus",
-        { uid: auth.currentUser.uid, status },
-        { headers: { "Content-Type": "application/json" } },
-      );
-    } catch (error) {
-      showToast(error.message, "error");
-    } finally {
-      return;
-    }
-  };
-
   const signIn = async (email, password): boolean => {
     if (!email || !password) {
       showToast("Please fill in all fields.", "error");
@@ -109,7 +95,6 @@ const useAuth = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       await signInUser();
-      await toggleOnlineStatus(true);
       showToast("Signed in successfully.", "success");
       window.location.replace("/home");
       return true;
@@ -154,7 +139,6 @@ const useAuth = () => {
           password,
         );
         await saveUser({ uid: userCredential.user.uid, username, name, email });
-        await toggleOnlineStatus(true);
         showToast("Signed up successfully.", "success");
         window.location.replace("/home");
         return true;
@@ -173,7 +157,6 @@ const useAuth = () => {
       await Promise.all([
         signOutUser(),
         auth.signOut(),
-        toggleOnlineStatus(false),
       ]);
       showToast("Signed out successfully.", "success");
     } catch (error) {

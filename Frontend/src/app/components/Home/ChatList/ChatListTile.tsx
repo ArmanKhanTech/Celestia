@@ -24,7 +24,7 @@ const ChatListTile = ({ chat }: RecentChat) => {
                 `/chat/${chat.cid}?uid=${chat.interlocutor.uid}&uname=${chat.interlocutor.uname}&name=${chat.interlocutor.name}&pfp_url=${chat.interlocutor.pfp_url}&is_active=${chat.interlocutor.is_active}&last_seen=${chat.interlocutor.last_seen}`
               );
             }}
-            className="font-bold"
+            className="font-bold text-lg"
           >
             {chat.interlocutor.name}
           </button>

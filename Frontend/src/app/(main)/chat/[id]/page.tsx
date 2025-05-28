@@ -75,7 +75,8 @@ const ChatPage = () => {
                 <p className="text-base text-base-content">
                   {interlocutor.is_active
                     ? "Online"
-                    : new Date(interlocutor.last_seen).toLocaleString()}
+                    : "Last seen on " +
+                      new Date(interlocutor.last_seen).toLocaleString()}
                 </p>
               </div>
             </div>

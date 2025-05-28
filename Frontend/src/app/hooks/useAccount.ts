@@ -2,15 +2,19 @@ import axios from "axios";
 import { useContext } from "react";
 import {
   ref as storageRef,
-  uploadBytes,
-  getDownloadURL,
+  deleteObject
 } from "firebase/storage";
+import {
+  deleteUser
+} from "firebase/auth";
 
 import { ToastContext } from "@/context/ToastProvider";
-import { storage } from "@/lib/firebase";
+import { storage, auth } from "@/lib/firebase";
+import { UserContext } from "../context/UserProvider";
 
 const useAccount = () => {
   const { showToast } = useContext(ToastContext);
+  const { currentUser } = useContext(UserContext);
 
   const getDetails = async (uid) => {
     try {
@@ -111,7 +115,32 @@ const useAccount = () => {
     }
   };
 
-  return { getDetails, changeName, setStatus, setPfp, searchUser };
+  const deleteAccount = async (uid) => {
+    try {
+      await axios.delete(
+        `http://localhost/user/deleteAccount`,
+        {
+          data: { uid },
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+
+      // Delete from Firebase Auth
+      await deleteUser(currentUser);
+
+      // Delete from Firebase Storage
+      const pfpRef = storageRef(storage, `pfp/${currentUser.uid}`);
+      await deleteObject(pfpRef);
+
+      showToast("Account deleted successfully", "success");
+    } catch (error) {
+      showToast(error.message, "error");
+    } finally {
+      return;
+    }
+  };
+
+  return { getDetails, changeName, setStatus, setPfp, searchUser, deleteAccount };
 };
 
 export default useAccount;
