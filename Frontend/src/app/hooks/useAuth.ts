@@ -15,80 +15,18 @@ const useAuth = () => {
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-  const signIn = async (email, password) => {
-    if (!email || !password) {
-      showToast("Please fill in all fields.", "error");
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      showToast("Invalid email.", "error");
-      return;
-    }
-
-    if (password.length < 6) {
-      showToast("Password should be atleast 6 characters.", "error");
-      return;
-    }
-
+  const checkIfUsernameExists = async (username) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password),
-        await signInUser(),
-        showToast("Signed in successfully.", "success");
-      window.location.replace("/home");
+      const res = await axios.post(
+        "http://localhost/auth/verify",
+        { username: username },
+        { headers: { "Content-Type": "application/json" } },
+      );
+      return res.data.message !== "User not found";
     } catch (error) {
-      showToast(error.message, "error");
-    } finally {
-      return;
+      return false;
     }
-  };
-
-  const signUp = async (email, password, name, username) => {
-    if (!email || !password || !name || !username) {
-      showToast("Please fill in all fields.", "error");
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      showToast("Invalid email.", "error");
-      return;
-    }
-
-    if (name.length < 3) {
-      showToast("Name should be atleast 3 characters.", "error");
-      return;
-    }
-
-    if (password.length < 6) {
-      showToast("Password should be atleast 6 characters.", "error");
-      return;
-    }
-
-    if (username.length < 3) {
-      showToast("Username should be atleast 3 characters.", "error");
-      return;
-    }
-
-    const usernameExists = await checkIfUsernameExists(username);
-    if (!usernameExists) {
-      try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password,
-        );
-        await saveUser({ uid: userCredential.user.uid, username, name, email });
-        showToast("Signed up successfully.", "success");
-        window.location.replace("/login");
-      } catch (error) {
-        showToast(error.message, "error");
-      } finally {
-        return;
-      }
-    } else {
-      showToast("Username already exists.", "error");
-      return;
-    }
+    return false;
   };
 
   const signInUser = async () => {
@@ -138,11 +76,86 @@ const useAuth = () => {
     }
   };
 
+  const signIn = async (email, password): boolean => {
+    if (!email || !password) {
+      showToast("Please fill in all fields.", "error");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      showToast("Invalid email.", "error");
+      return false;
+    }
+
+    if (password.length < 6) {
+      showToast("Password should be atleast 6 characters.", "error");
+      return false;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      await signInUser();
+      showToast("Signed in successfully.", "success");
+      window.location.replace("/home");
+      return true;
+    } catch (error) {
+      showToast(error.message, "error");
+      return false;
+    }
+  };
+
+  const signUp = async (email, password, name, username): boolean => {
+    if (!email || !password || !name || !username) {
+      showToast("Please fill in all fields.", "error");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      showToast("Invalid email.", "error");
+      return false;
+    }
+
+    if (name.length < 3) {
+      showToast("Name should be atleast 3 characters.", "error");
+      return false;
+    }
+
+    if (password.length < 6) {
+      showToast("Password should be atleast 6 characters.", "error");
+      return false;
+    }
+
+    if (username.length < 3) {
+      showToast("Username should be atleast 3 characters.", "error");
+      return false;
+    }
+
+    const usernameExists = await checkIfUsernameExists(username);
+    if (!usernameExists) {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password,
+        );
+        await saveUser({ uid: userCredential.user.uid, username, name, email });
+        showToast("Signed up successfully.", "success");
+        window.location.replace("/home");
+        return true;
+      } catch (error) {
+        showToast(error.message, "error");
+        return false;
+      }
+    } else {
+      showToast("Username already exists.", "error");
+      return false;
+    }
+  };
+
   const logOut = async () => {
     try {
       await Promise.all([signOutUser(), auth.signOut()]);
       showToast("Signed out successfully.", "success");
-      window.location.replace("/login");
     } catch (error) {
       showToast(error.message, "error");
     } finally {
@@ -169,20 +182,6 @@ const useAuth = () => {
     } finally {
       return;
     }
-  };
-
-  const checkIfUsernameExists = async (username) => {
-    try {
-      const res = await axios.post(
-        "http://localhost/auth/verify",
-        { username: username },
-        { headers: { "Content-Type": "application/json" } },
-      );
-      return res.data.message !== "User not found";
-    } catch (error) {
-      return false;
-    }
-    return false;
   };
 
   return {

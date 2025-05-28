@@ -7,9 +7,11 @@ import Menu from "@/components/Common/Menu";
 import Loading from "@/components/Common/Loading";
 import { auth } from "@/lib/firebase";
 import { UserContext } from "@/context/UserProvider";
+import { ThemeContext } from "@/context/ThemeProvider";
 
 const MainWrapper = ({ children }: any) => {
   const { currentUser } = useContext(UserContext);
+  const { theme } = useContext(ThemeContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,11 +21,18 @@ const MainWrapper = ({ children }: any) => {
   }, [currentUser]);
 
   if (loading) {
-    return <Loading text="Loading Account..." />;
+    return (
+      <div data-theme={theme || "light"} className="min-h-screen bg-base-100">
+        <Loading text="Loading Account..." />
+      </div>
+    );
   }
 
   return (
-    <section className="flex-1 flex h-full min-w-full flex-row">
+    <section
+      className="flex-1 flex h-full min-w-full flex-row"
+      data-theme={theme || "light"}
+    >
       {currentUser && !loading ? (
         <>
           <div className="fixed h-full bg-base-100 w-14 lg:w-40 border-r">

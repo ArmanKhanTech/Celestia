@@ -158,7 +158,7 @@ Follow the instructions below to get started.
 ## Technical Description
 
 1. Websockets for real-time, bi-directional communication.
-2. Redis Pub-Sub for real-time chatting.
+2. Redis Pub/Sub for real-time chatting.
 3. Firebase Storage for storing DPs.
 4. Firebase Authentication for authenticating users and automated session management.
 5. PostgreSQL is used to store user info and conversations.
@@ -172,7 +172,7 @@ Follow the instructions below to get started.
    <br>&emsp;a. Users: uid, uname, name, email, date_join, is_active, last_seen, profile_pic_url, status
    <br>&emsp;b. Conversations: cid, participants 
    <br>&emsp;c. Messages: mid, cid, message, sender, sent_at, receiver, received_at, status 
-   <br>&emsp;d. Groups (Pending): gid, cid, gname, members, desc, admins, created_at
+   <br>&emsp;d. Groups: gid, cid, gname, members, desc, admins, created_at
    
 
 ## Screenshots

@@ -13,7 +13,7 @@ const MainWrapper = ({ children }: any) => {
   return (
     <section
       className="flex flex-col min-h-screen min-w-screen bg-base-100"
-      data-theme={theme}
+      data-theme={theme || "light"}
     >
       <Header />
       <div className="mt-[4.75rem] flex flex-col flex-1 w-full max-w-5xl lg:border-l lg:border-r m-auto">

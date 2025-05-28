@@ -14,12 +14,13 @@ const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [justLoggedIn, setJustLoggedIn] = useState<boolean>(false);
 
   const { currentUser } = useContext(UserContext);
 
   const { signIn, forgotPassword } = useAuth();
 
-  if (currentUser) {
+  if (currentUser && !justLoggedIn) {
     return <AlreadyLogged />;
   }
 
@@ -77,9 +78,14 @@ const LoginPage = () => {
           <button
             onClick={async () => {
               setLoading(true);
-              await signIn(email, password);
-              console.log("Sign in");
+              const result: boolean = await signIn(email, password);
               setLoading(false);
+              if (result) {
+                setJustLoggedIn(true);
+                setTimeout(() => {
+                  setJustLoggedIn(false);
+                }, 2000);
+              }
             }}
             className="flex w-full justify-center rounded-md bg-base-content p-2 text-lg font-semibold leading-6 shadow-sm"
           >

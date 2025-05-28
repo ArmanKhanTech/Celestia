@@ -50,7 +50,7 @@ const useAccount = () => {
         { uid, name },
         { headers: { "Content-Type": "application/json" } },
       );
-      showToast("Name change successfull", "success");
+      showToast("Name change successful", "success");
     } catch (error) {
       showToast(error.message, "error");
     } finally {
@@ -75,7 +75,7 @@ const useAccount = () => {
         { uid, status },
         { headers: { "Content-Type": "application/json" } },
       );
-      showToast("Status change successfull", "success");
+      showToast("Status change successful", "success");
     } catch (error) {
       showToast(error.message, "error");
     } finally {

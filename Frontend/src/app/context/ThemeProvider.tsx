@@ -23,21 +23,30 @@ export const ThemeProvider = ({ children }: any) => {
   }, []);
 
   useEffect(() => {
-    if (isMounted) {
+    if (isMounted && typeof window !== "undefined") {
       localStorage.setItem("theme", theme);
+
+      // Apply theme to document immediately
+      document.documentElement.setAttribute("data-theme", theme);
+
       let metaThemeColor = document.querySelector("meta[name='theme-color']");
       if (!metaThemeColor) {
         metaThemeColor = document.createElement("meta");
-        metaThemeColor.name = "theme-color";
+        metaThemeColor.setAttribute("name", "theme-color");
         document.head.appendChild(metaThemeColor);
       }
-      metaThemeColor.content = themeColor[theme];
+      metaThemeColor.setAttribute("content", themeColor[theme] || "#ffffff");
     }
   }, [theme, isMounted]);
 
   const changeTheme = (nextTheme: string) => {
     setTheme(nextTheme);
   };
+
+  // Don't render children until theme is loaded from localStorage
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <ThemeContext.Provider value={{ theme, changeTheme }}>
