@@ -146,7 +146,7 @@ Follow the instructions below to get started.
 ## Features
 
 1. Authentication
-2. Profile Customization: Username, DP, etc
+2. Profile Customization: Name, PFP, etc
 3. 1:1 Chatting
 4. M:M Chatting (Groups)
 5. User Lookup (Search users by their usernames)
@@ -159,7 +159,7 @@ Follow the instructions below to get started.
 
 1. Websockets for real-time, bi-directional communication.
 2. Redis Pub/Sub for real-time chatting.
-3. Firebase Storage for storing DPs.
+3. Firebase Storage for storing PFPs.
 4. Firebase Authentication for authenticating users and automated session management.
 5. PostgreSQL is used to store user info and conversations.
 6. Microservices:
