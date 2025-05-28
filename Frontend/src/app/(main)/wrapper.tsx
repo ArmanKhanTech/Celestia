@@ -20,9 +20,12 @@ const MainWrapper = ({ children }: any) => {
     }
   }, [currentUser]);
 
-  if (loading) {
+  if (loading && !currentUser) {
     return (
-      <div data-theme={theme || "light"} className="min-h-screen bg-base-100">
+      <div
+        data-theme={theme || "light"}
+        className="min-h-[90vh] bg-base-100 flex items-center justify-center"
+      >
         <Loading text="Loading Account..." />
       </div>
     );

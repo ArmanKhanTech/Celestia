@@ -13,7 +13,7 @@ const createConversation = async (req, res) => {
     try {
         const checkResult = await db.query(checkQuery, [JSON.stringify(participants)]);
         if (checkResult.rows.length > 0) {
-            return res.status(500).json({ message: 'Conversation already exists' });
+            return res.status(200).json({ cid: cid });
         }
 
         const insertQuery = `

@@ -5,17 +5,16 @@ import { FaUser } from "react-icons/fa";
 
 type PfpProps = {
   src: string;
-  img_props: string;
-  hol_props: string;
+  style: string;
 };
 
-const Pfp = ({ src, props }: PfpProps) => {
+const Pfp = ({ src, style }: PfpProps) => {
   return (
-    <div className={`bg-base-200 ${props} flex items-center justify-center`}>
+    <div className={`bg-base-200 ${style} flex items-center justify-center`}>
       {src && src !== "null" ? (
         <Image
           src={src}
-          alt="Profile Picture"
+          alt="PFP"
           width={1920}
           height={1080}
           className="rounded-md w-full h-full object-cover"

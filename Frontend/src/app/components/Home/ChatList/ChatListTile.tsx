@@ -5,20 +5,9 @@ import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 import Pfp from "@/components/Common/Pfp";
+import { RecentChat } from "@/src/app/lib/types";
 
-type ChatListTileProps = {
-  chat: {
-    cid: number;
-    pfp_url: string;
-    uid: string;
-    name: string;
-    uname: string;
-    recentMessage: string;
-    recentMessageTimestamp: string;
-  };
-};
-
-const ChatListTile = ({ chat }: ChatListTileProps) => {
+const ChatListTile = ({ chat }: RecentChat) => {
   const router = useRouter();
 
   return (
@@ -26,19 +15,18 @@ const ChatListTile = ({ chat }: ChatListTileProps) => {
       key={chat.cid}
       className="flex items-center cursor-pointer w-full py-3 border-b gap-3"
     >
-      <Pfp src={chat.pfp_url} props="w-16 h-full rounded-md" />
+      <Pfp src={chat.interlocutor.pfp_url} style="w-16 h-full rounded-md" />
       <div className="flex flex-col w-full">
         <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => {
-              console.log(chat.pfp_url);
               router.push(
-                `/chat/${chat.cid}?uid=${chat.uid}&uname=${chat.uname}&name=${chat.name}&pfp_url=${chat.pfp_url}`
+                `/chat/${chat.cid}?uid=${chat.interlocutor.uid}&uname=${chat.interlocutor.uname}&name=${chat.interlocutor.name}&pfp_url=${chat.interlocutor.pfp_url}&is_active=${chat.interlocutor.is_active}&last_seen=${chat.interlocutor.last_seen}`
               );
             }}
             className="font-bold"
           >
-            {chat.name}
+            {chat.interlocutor.name}
           </button>
         </div>
         <div className="font-medium">

@@ -12,23 +12,15 @@ import { PiChatCenteredSlashLight } from "react-icons/pi";
 import ChatBubble from "@/components/Home/Chat/ChatBubble";
 import Pfp from "@/components/Common/Pfp";
 import useChats from "@/hooks/useChats";
-
-type Message = {
-  mid: string;
-  message: string;
-  sender: string;
-  sent_at: string;
-  receiver: string;
-  received_at: string;
-  status: string;
-  type: string;
-};
+import { getDecodedPfpUrl } from "@/src/app/lib/utils";
+import { Message } from "@/src/app/lib/types";
 
 const ChatPage = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { fetchMessages, sendMessage, receiveMessage } = useChats();
+  const { fetchMessages, sendMessage, receiveMessage, getOnlineStatus } =
+    useChats();
 
   const cid = pathname.split("/")[2];
 
@@ -36,7 +28,13 @@ const ChatPage = () => {
     uid: searchParams.get("uid"),
     uname: searchParams.get("uname"),
     name: searchParams.get("name"),
-    pfp_url: searchParams.get("pfp_url"),
+    pfp_url:
+      getDecodedPfpUrl(
+        searchParams.get("pfp_url"),
+        searchParams.get("token")
+      ) || "",
+    is_active: searchParams.get("is_active") === "true",
+    last_seen: searchParams.get("last_seen") || "",
   });
   const [messages, setMessages] = useState<Message>([]);
   const [newMessage, setNewMessage] = useState("");
@@ -59,15 +57,29 @@ const ChatPage = () => {
             />
             <Pfp
               src={interlocutor.pfp_url}
-              props="w-12 h-12 lg:w-14 lg:h-14 rounded-md"
+              style="w-12 h-12 lg:w-14 lg:h-14 rounded-md"
             />
-            <Link href={`/profile/${interlocutor.uid}`}>
-              <h1 className="text-xl lg:text-2xl font-semibold cursor-pointer">
-                {interlocutor.name}
-              </h1>
-            </Link>
+            <div className="flex flex-col">
+              <Link href={`/profile/${interlocutor.uid}`}>
+                <h1 className="text-xl lg:text-2xl font-semibold cursor-pointer">
+                  {interlocutor.name}
+                </h1>
+              </Link>
+              <div className="flex items-center gap-2">
+                {interlocutor.is_active && (
+                  <span class="relative flex size-3">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex size-3 rounded-full bg-green-500"></span>
+                  </span>
+                )}
+                <p className="text-base text-base-content">
+                  {interlocutor.is_active
+                    ? "Online"
+                    : new Date(interlocutor.last_seen).toLocaleString()}
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="text-base text-base-content">Online</p>
         </div>
       </div>
       {messages && messages.length > 0 ? (

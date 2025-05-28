@@ -13,23 +13,14 @@ import Loading from "@/components/Common/Loading";
 import ChatListPlaceholder from "@/components/Home/ChatList/ChatListPlaceholder";
 import GroupListHeader from "@/components/Home/Group/GroupListHeader";
 import GroupListPlaceholder from "@/components/Home/Group/GroupListPlaceholder";
-
-type Chat = {
-  cid: number;
-  pfp_url: string;
-  uid: string;
-  uname: string;
-  name: string;
-  recentMessage: string;
-  recentMessageTimestamp: string;
-};
+import { RecentChat, RecentGroupChat } from "../../lib/types";
 
 const HomePage = () => {
   const pathname = usePathname();
   const isChatPage = pathname.includes("/chat/");
 
-  const [chats, setChats] = useState<Chat[]>([]);
-  const [groups, setGroups] = useState<Chat[]>([]);
+  const [chats, setChats] = useState<RecentChat[]>([]);
+  const [groups, setGroups] = useState<RecentGroupChat[]>([]);
   const [loading, setLoading] = useState(true);
   const [openChats, setOpenChats] = useState<boolean>(true);
   const [openGroups, setOpenGroups] = useState<boolean>(false);
@@ -81,20 +72,7 @@ const HomePage = () => {
           <>
             <ChatListHeader />
             {chats.map((chat) => (
-              <ChatListTile
-                key={chat.cid}
-                chat={
-                  {
-                    cid: chat.cid,
-                    pfp_url: chat.interlocutor.pfp_url,
-                    uid: chat.interlocutor.uid,
-                    name: chat.interlocutor.name,
-                    uname: chat.interlocutor.uname,
-                    recentMessage: chat.recentMessage,
-                    recentMessageTimestamp: chat.recentMessageTimestamp,
-                  } as Chat
-                }
-              />
+              <ChatListTile key={chat.cid} chat={chat as RecentChat} />
             ))}
           </>
         ) : (
@@ -126,14 +104,8 @@ const HomePage = () => {
                 key={chat.cid}
                 chat={
                   {
-                    cid: chat.cid,
-                    pfp_url: chat.interlocutor.pfp_url,
-                    uid: chat.interlocutor.uid,
-                    name: chat.interlocutor.name,
-                    uname: chat.interlocutor.uname,
-                    recentMessage: chat.recentMessage,
-                    recentMessageTimestamp: chat.recentMessageTimestamp,
-                  } as Chat
+                    // TODO
+                  } as RecentGroupChat
                 }
               />
             ))}

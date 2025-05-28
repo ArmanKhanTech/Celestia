@@ -58,7 +58,7 @@ const ProfilePage = () => {
             )}
             <p className="text-3xl font-semibold">Profile</p>
           </div>
-          <Pfp src={user.pfp_url} props="w-44 h-44 rounded-md mt-4" />
+          <Pfp src={user.pfp_url} style="w-44 h-44 rounded-md mt-4" />
           {currentUser.uid === id && (
             <>
               <div className="flex flex-col items-start w-full lg:w-[40%] justify-start mt-4">

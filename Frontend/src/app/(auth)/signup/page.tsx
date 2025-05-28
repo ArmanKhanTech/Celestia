@@ -106,7 +106,7 @@ const SignupPage = () => {
                 email,
                 password,
                 name,
-                username
+                username,
               );
               setLoading(false);
               if (result) {
@@ -116,10 +116,10 @@ const SignupPage = () => {
                 }, 2000);
               }
             }}
-            className="flex w-full justify-center h-10 rounded-md bg-base-content text-base-100 p-2 text-lg font-semibold leading-6 shadow-sm"
+            className="flex w-full justify-center rounded-md bg-base-content p-2 text-lg font-semibold leading-6 shadow-sm"
           >
             {loading ? (
-              <LoadingAnim props={"h-6 w-6fill-base-100"} />
+              <LoadingAnim props={"h-6 w-6 fill-base-100"} />
             ) : (
               <p className="text-base-100">Sign Up</p>
             )}

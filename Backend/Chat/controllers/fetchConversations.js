@@ -22,7 +22,7 @@ const fetchConversations = async (req, res) => {
         const uniqueParticipantIds = [...new Set(participants)];
 
         const query2 = `
-            SELECT uid, uname, name, pfp_url
+            SELECT uid, uname, name, pfp_url, is_active, last_seen
             FROM users
             WHERE uid = ANY($1)
         `;

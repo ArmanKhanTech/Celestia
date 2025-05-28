@@ -10,7 +10,7 @@ const useChats = () => {
 
   // TODO: Create socket connection only once
   useEffect(() => {
-    // (directly send request to the server because 
+    // (directly send request to the server because
     // proxy is not yet configured for WebSocket protocol)
     socketRef.current = new WebSocket("ws://localhost:3003");
 
@@ -94,9 +94,15 @@ const useChats = () => {
     } catch (error) {
       showToast(error.response.data.message, "error");
     }
-  }
+  };
 
-  return { createConversation, fetchConversations, fetchMessages, sendMessage, receiveMessage };
+  return {
+    createConversation,
+    fetchConversations,
+    fetchMessages,
+    sendMessage,
+    receiveMessage
+  };
 };
 
 export default useChats;
