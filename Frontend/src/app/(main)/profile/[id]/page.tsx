@@ -90,7 +90,7 @@ const ProfilePage = () => {
                 >
                   {loadingPfp ? (
                     <LoadingAnim
-                      props={
+                      style={
                         "h-6 w-6 fill-base-100 text-base-content text-center m-auto"
                       }
                     />
@@ -133,7 +133,7 @@ const ProfilePage = () => {
                     disabled={loadingName}
                   >
                     {loadingName ? (
-                      <LoadingAnim props={"h-6 w-6 fill-base-100"} />
+                      <LoadingAnim style={"h-6 w-6 fill-base-100"} />
                     ) : (
                       <FaExchangeAlt className="w-6 h-6" />
                     )}
@@ -171,7 +171,7 @@ const ProfilePage = () => {
                     disabled={loadingStatus}
                   >
                     {loadingStatus ? (
-                      <LoadingAnim props={"h-6 w-6 fill-base-100"} />
+                      <LoadingAnim style={"h-6 w-6 fill-base-100"} />
                     ) : (
                       <FaExchangeAlt className="w-6 h-6" />
                     )}

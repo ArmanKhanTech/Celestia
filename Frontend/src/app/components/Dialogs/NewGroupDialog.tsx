@@ -1,16 +1,16 @@
 import { IoCloseSharp } from "react-icons/io5";
 
-type NewGroupDialogProps = {
+type Props = {
   isOpened: boolean;
   onClose: () => void;
 };
 
-const NewGroupDialog = ({ isOpened, onClose }: NewGroupDialogProps) => {
+const NewGroupDialog = ({ isOpened, onClose }: Props) => {
   return (
     <div
       className={`fixed inset-0 z-50 p-5 grid h-screen w-screen place-items-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ${isOpened ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} `}
     >
-      <div className="relative overflow-y-auto w-full max-w-96 p-5 max-h-96 rounded-lg text-lg leading-relaxed bg-base-200">
+      <div className="relative overflow-y-auto w-full max-w-96 p-5 max-h-96 rounded-md text-lg leading-relaxed bg-base-200">
         <div className="flex items-center text-2xl antialiased font-semibold leading-snug shrink-0">
           <span>New Group</span>
           <button className="ml-auto" onClick={onClose}>

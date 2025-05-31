@@ -15,7 +15,7 @@ const Toast = () => {
   return (
     <div
       id="toast-default"
-      className="fixed bottom-4 m-auto right-0 left-0 flex items-center w-[75%] lg:max-w-lg p-4 bg-base-200 rounded-lg shadow-lg z-50"
+      className="fixed bottom-4 m-auto right-0 left-0 flex items-center w-[75%] lg:max-w-lg p-4 bg-base-200 rounded-md shadow-lg z-50"
       role="alert"
     >
       {type === "success" ? (
@@ -26,7 +26,7 @@ const Toast = () => {
       <div className="ms-3 text-lg font-normal">{message}</div>
       <button
         type="button"
-        className="ms-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8"
+        className="ms-auto -mx-1.5 -my-1.5 rounded-md p-1.5 inline-flex items-center justify-center h-8 w-8"
         onClick={hideToast}
         aria-label="Close"
       >

@@ -2,10 +2,13 @@ import axios from "axios";
 import { useContext } from "react";
 import {
   ref as storageRef,
-  deleteObject
+  deleteObject,
+  getMetadata
 } from "firebase/storage";
 import {
-  deleteUser
+  deleteUser,
+  reauthenticateWithCredential,
+  EmailAuthProvider
 } from "firebase/auth";
 
 import { ToastContext } from "@/context/ToastProvider";
@@ -27,9 +30,16 @@ const useAccount = () => {
       showToast(error.message, "error");
       return null;
     }
+
+    return null;
   };
 
   const searchUser = async (uname) => {
+    if (!uname) {
+      showToast("Username cannot be empty", "error");
+      return null;
+    }
+
     try {
       const res = await axios.get(
         `http://localhost/user/searchUser?uname=${uname}`,
@@ -40,12 +50,14 @@ const useAccount = () => {
       showToast(error.message, "error");
       return null;
     }
+
+    return null;
   };
 
   const changeName = async (uid, name) => {
     if (!name) {
       showToast("Name cannot be empty", "error");
-      return null;
+      return;
     }
 
     try {
@@ -57,20 +69,18 @@ const useAccount = () => {
       showToast("Name change successful", "success");
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
   const setStatus = async (uid, status) => {
     if (!status) {
       showToast("Status cannot be empty", "error");
-      return null;
+      return;
     }
 
     if (status.length > 100) {
       showToast("Status cannot be more than 100 characters", "error");
-      return null;
+      return;
     }
 
     try {
@@ -82,20 +92,18 @@ const useAccount = () => {
       showToast("Status change successful", "success");
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
   const setPfp = async (uid, file) => {
     if (!file) {
       showToast("Please select a file", "error");
-      return null;
+      return;
     }
 
     if (file.size > 1000000) {
       showToast("File size too large", "error");
-      return null;
+      return;
     }
 
     try {
@@ -110,35 +118,56 @@ const useAccount = () => {
       showToast("Profile picture updated", "success");
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
-  const deleteAccount = async (uid) => {
+  const deleteAccount = async (uid, password) => {
     try {
-      await axios.delete(
-        `http://localhost/user/deleteAccount`,
-        {
-          data: { uid },
-          headers: { "Content-Type": "application/json" }
+      if (!uid || !password) {
+        showToast("UID or password are required", "error");
+        return;
+      }
+
+      if (!currentUser) {
+        showToast("No user is currently logged in", "error");
+        return;
+      }
+
+      if (currentUser.uid !== uid) {
+        showToast("You can only delete your own account", "error");
+        return;
+      }
+
+      // Re-authenticate user
+      const credential = EmailAuthProvider.credential(currentUser.email, password);
+      await reauthenticateWithCredential(currentUser, credential);
+
+      // Delete from Firebase Storage 
+      const pfpRef = storageRef(storage, `pfp/${currentUser.uid}`);
+      try {
+        await getMetadata(pfpRef); // Check if file exists
+        await deleteObject(pfpRef);
+      } catch (storageError) {
+        if (storageError.code !== "storage/object-not-found") {
+          throw storageError;
         }
-      );
+      }
+
+      // Delete from your database
+      await axios.delete("http://localhost/user/deleteAccount", {
+        data: { uid },
+        headers: { "Content-Type": "application/json" }
+      });
 
       // Delete from Firebase Auth
       await deleteUser(currentUser);
 
-      // Delete from Firebase Storage
-      const pfpRef = storageRef(storage, `pfp/${currentUser.uid}`);
-      await deleteObject(pfpRef);
-
       showToast("Account deleted successfully", "success");
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
+
 
   return { getDetails, changeName, setStatus, setPfp, searchUser, deleteAccount };
 };

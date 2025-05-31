@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 
-type PfpProps = {
+type Props = {
   src: string;
   style: string;
 };
 
-const Pfp = ({ src, style }: PfpProps) => {
+const Pfp = ({ src, style }: Props) => {
   return (
     <div className={`bg-base-200 ${style} flex items-center justify-center`}>
       {src && src !== "null" ? (

@@ -1,12 +1,12 @@
-type LoadingAnimProps = {
-  props: any;
+type Props = {
+  style: string;
 };
 
-const LoadingAnim = ({ props }: LoadingAnimProps) => {
+const LoadingAnim = ({ style }: Props) => {
   return (
     <svg
       aria-hidden="true"
-      className={`animate-spin ${props}`}
+      className={`animate-spin ${style}`}
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

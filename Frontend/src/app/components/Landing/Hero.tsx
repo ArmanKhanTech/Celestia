@@ -6,7 +6,7 @@ const Hero = () => {
       className="flex flex-col lg:flex-row bg-contain h-[80vh] rounded-xl mt-3 mb-32 bg-center"
       style={{ backgroundImage: "url('/images/hero/hero-bg.jpg')" }}
     >
-      <div className="w-full h-full p-5 lg:w-1/2 rounded-lg bg-black bg-opacity-40">
+      <div className="w-full h-full p-5 lg:w-1/2 rounded-md bg-black bg-opacity-40">
         <div className="flex items-start justify-center flex-col w-full h-full">
           <h1 className="text-3xl font-semibold lg:text-6xl text-white">
             Speak Freely
