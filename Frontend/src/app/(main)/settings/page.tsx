@@ -24,7 +24,7 @@ const SettingsPage = () => {
           await logOut();
           setLoading(false);
         }}
-        className="px-4 py-2 w-[50%] lg:w-[25%] text-white font-bold text-center bg-base-content rounded-md"
+        className="px-4 py-2 w-[50%] lg:w-[25%] text-white font-bold text-center bg-red-500 rounded-md"
       >
         {loading ? (
           <LoadingAnim props={"h-6 w-6 text-red-500 fill-white m-auto"} />

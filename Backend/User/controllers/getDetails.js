@@ -3,6 +3,10 @@ const db = require('../config/database');
 const getDetails = async (req, res) => {
     const { uid } = req.query;
 
+    if (!uid) {
+        return res.status(400).json({ message: 'User ID is required' });
+    }
+
     const query = `
         SELECT uname, name, pfp_url, status, date_join FROM users WHERE uid = $1
     `;

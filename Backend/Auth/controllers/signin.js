@@ -3,7 +3,11 @@ const db = require('../config/database');
 const signin = async (req, res) => {
     const { uid } = req.body;
     const timestamp = new Date();
-    
+
+    if (!uid) {
+        return res.status(400).json({ message: 'User ID is required' });
+    }
+
     const query1 = `
         UPDATE users SET last_seen = $1 WHERE uid = $2
     `;

@@ -5,6 +5,10 @@ const createConversation = async (req, res) => {
     const { participants } = req.body;
     const cid = uuidv4();
 
+    if (!participants || !Array.isArray(participants) || participants.length < 2) {
+        return res.status(400).json({ message: 'At least two participants are required' });
+    }
+
     const checkQuery = `
         SELECT cid FROM conversations
         WHERE participants @> $1::jsonb AND participants <@ $1::jsonb

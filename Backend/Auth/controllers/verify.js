@@ -2,6 +2,11 @@ const db = require('../config/database');
 
 const verify = async (req, res) => {
     const { username } = req.body;
+
+    if (!username) {
+        return res.status(400).json({ message: 'Username is required' });
+    }
+
     try {
         const result = await db.query('SELECT * FROM users WHERE uname = $1', [username]);
         if (result.rows.length === 0) {

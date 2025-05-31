@@ -3,6 +3,10 @@ const db = require('../config/database');
 const setStatus = async (req, res) => {
     const { uid, status } = req.body;
 
+    if (!uid || !status) {
+        return res.status(400).json({ message: 'User ID and status are required' });
+    }
+
     const query = `
         UPDATE users SET status = $1 WHERE uid = $2
     `;

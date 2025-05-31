@@ -5,7 +5,6 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import axios from "axios";
-import { headers } from "next/headers";
 
 import { auth } from "@/lib/firebase";
 import { ToastContext } from "@/context/ToastProvider";
@@ -24,8 +23,10 @@ const useAuth = () => {
       );
       return res.data.message !== "User not found";
     } catch (error) {
+      showToast(error.message, "error");
       return false;
     }
+
     return false;
   };
 
@@ -38,8 +39,6 @@ const useAuth = () => {
       );
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
@@ -57,8 +56,6 @@ const useAuth = () => {
       );
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
@@ -71,8 +68,6 @@ const useAuth = () => {
       );
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
@@ -102,6 +97,8 @@ const useAuth = () => {
       showToast(error.message, "error");
       return false;
     }
+
+    return false;
   };
 
   const signUp = async (email, password, name, username): boolean => {
@@ -150,6 +147,8 @@ const useAuth = () => {
       showToast("Username already exists.", "error");
       return false;
     }
+
+    return false;
   };
 
   const logOut = async () => {
@@ -161,8 +160,6 @@ const useAuth = () => {
       showToast("Signed out successfully.", "success");
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 
@@ -182,8 +179,6 @@ const useAuth = () => {
       showToast("Password reset email sent.", "success");
     } catch (error) {
       showToast(error.message, "error");
-    } finally {
-      return;
     }
   };
 

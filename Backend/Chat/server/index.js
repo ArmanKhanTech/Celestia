@@ -47,7 +47,6 @@ const redisSubscriber = redis.createClient({ url: 'redis://localhost:6379' });
 })();
 
 wss.on('connection', (ws) => {
-    // change status of user to online
     console.log('WebSocket client connected');
 
     ws.on('message', async (message) => {
@@ -78,7 +77,7 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('close', () => {
-        // change status of user to offline and modify last seen
+        // Change status of user to offline and modify last seen
         console.log('WebSocket client disconnected');
     });
 

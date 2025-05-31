@@ -3,6 +3,10 @@ const db = require('../config/database');
 const searchUser = async (req, res) => {
     const { uname } = req.query;
 
+    if (!uname) {
+        return res.status(400).json({ message: 'Username is required' });
+    }
+
     const query = `
         SELECT * FROM users WHERE uname LIKE $1
     `;

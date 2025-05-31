@@ -3,6 +3,10 @@ const db = require('../config/database');
 const changeName = async (req, res) => {
     const { uid, name } = req.body;
 
+    if (!uid || !name) {
+        return res.status(400).json({ message: 'User ID and name are required' });
+    }
+
     const query = `
         UPDATE users SET name = $1 WHERE uid = $2
     `;

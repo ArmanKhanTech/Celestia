@@ -3,6 +3,10 @@ const db = require('../config/database');
 const fetchMessages = async (req, res) => {
     const { cid } = req.query;
 
+    if (!cid) {
+        return res.status(400).json({ message: 'Conversation ID is required' });
+    }
+
     const query1 = `
         SELECT  *
         FROM messages

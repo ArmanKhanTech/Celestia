@@ -6,15 +6,18 @@ import { User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
 interface UserContextType {
-  currentUser: User | null;
+  currentUser: User | null | undefined;
 }
 
 export const UserContext = createContext<UserContextType>({
-  currentUser: null,
+  currentUser: undefined,
 });
 
 export const UserProvider = ({ children }: any) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  // Initialize with undefined to indicate loading state
+  const [currentUser, setCurrentUser] = useState<User | null | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {

@@ -3,6 +3,10 @@ const db = require('../config/database');
 const fetchConversations = async (req, res) => {
     const { uid } = req.query;
 
+    if (!uid) {
+        return res.status(400).json({ message: 'User ID is required' });
+    }
+
     const query1 = `
         SELECT cid, participants
         FROM conversations

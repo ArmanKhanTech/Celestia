@@ -8,10 +8,23 @@ const useChats = () => {
 
   const socketRef = useRef<WebSocket | null>(null);
 
+  const sendMessage = (message) => {
+    if (socketRef.current?.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify(message));
+    } else {
+      showToast("Unable to send message", "error");
+    }
+  };
+
+  const receiveMessage = (message: any) => {
+    console.log("Received message:", message);
+    // Handle the received message (e.g., update state or UI)
+  };
+
   // TODO: Create socket connection only once
   useEffect(() => {
-    // (directly send request to the server because
-    // proxy is not yet configured for WebSocket protocol)
+    // Note: Directly sending request to the socket server because
+    // proxy is not yet configured for WebSocket protocol.
     socketRef.current = new WebSocket("ws://localhost:3003");
 
     socketRef.current.onopen = () => {
@@ -32,22 +45,11 @@ const useChats = () => {
     };
 
     return () => {
-      socketRef.current?.close();
-    };
-  }, []);
-
-  const sendMessage = (message) => {
-    if (socketRef.current?.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify(message));
-    } else {
-      showToast("Unable to send message", "error");
+      if (socketRef.readyState === 1) {
+        socketRef.close();
+      }
     }
-  };
-
-  const receiveMessage = (message: any) => {
-    console.log("Received message:", message);
-    // Handle the received message (e.g., update state or UI)
-  };
+  }, []);
 
   const createConversation = async (participants: string) => {
     try {
@@ -57,10 +59,9 @@ const useChats = () => {
           participants: participants.split(","),
         },
       );
-      console.log(response.data);
       return response.data.cid;
     } catch (error) {
-      showToast(error.response.data.message, "error");
+      showToast(error.message, "error");
     }
   };
 
@@ -74,9 +75,9 @@ const useChats = () => {
           },
         },
       );
-      return response.data;
+      return response.data || [];
     } catch (error) {
-      showToast(error.response.data.message, "error");
+      showToast(error.message, "error");
     }
   };
 
@@ -90,9 +91,9 @@ const useChats = () => {
           },
         },
       );
-      return response.data;
+      return response.data || [];
     } catch (error) {
-      showToast(error.response.data.message, "error");
+      showToast(error.message, "error");
     }
   };
 
